@@ -1,0 +1,255 @@
+/* Import a Google Font that supports Nepali characters */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+/* --- CSS Variables for easy customization --- */
+:root {
+    --primary-color: #1A4A8A; /* Dark blue similar to image */
+    --secondary-color: #163F73; /* Darker blue for dropdown */
+    --text-color-light: #f4f4f4;
+    --text-color-dark: #333;
+    --hover-color: #007bff; /* A lighter blue for hover effects */
+    --font-family-nepali: 'Noto Sans Devanagari', sans-serif;
+    --font-family-english: 'Roboto', sans-serif;
+    --nav-height: 70px;
+    --transition-speed: 0.3s;
+}
+
+/* --- General Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-nepali);
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    padding-top: var(--nav-height); /* Prevent content from hiding behind fixed nav */
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scroll for anchor links */
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+    font-family: var(--font-family-nepali); /* Ensure headers use Nepali font */
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    height: var(--nav-height);
+    position: fixed; /* Fixed navigation bar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-logo {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: var(--font-family-nepali);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-item {
+    margin-left: 20px;
+    position: relative; /* For dropdown positioning */
+}
+
+.nav-link {
+    color: var(--text-color-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    font-family: var(--font-family-nepali);
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.nav-link .fa-caret-down {
+    margin-left: 5px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the parent link */
+    left: 0;
+    background-color: var(--secondary-color);
+    list-style: none;
+    padding: 10px 0;
+    min-width: 200px; /* Adjust as needed */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 0 0 4px 4px;
+    z-index: 1001;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown-menu li a {
+    color: var(--text-color-light);
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+    font-family: var(--font-family-nepali);
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Hamburger Menu (for mobile) */
+.hamburger {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-color-light);
+    transition: all var(--transition-speed) ease-in-out;
+}
+
+/* --- Sections --- */
+.page-section {
+    padding: 80px 20px; /* Increased padding */
+    min-height: 70vh; /* Give sections some height to see transitions */
+    opacity: 0; /* Initially hidden for transition */
+    transform: translateY(30px); /* Slightly moved down for transition */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    border-bottom: 1px solid #eee;
+}
+.page-section:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate background for sections */
+}
+
+.page-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.welcome-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('placeholder-school.jpg') no-repeat center center/cover; /* Replace with an actual school image */
+    color: white;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.welcome-section h1 {
+    font-size: 3rem;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--text-color-dark);
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%; /* Hidden off-screen */
+        top: var(--nav-height);
+        flex-direction: column;
+        background-color: var(--primary-color);
+        width: 100%;
+        text-align: center;
+        transition: left var(--transition-speed) ease;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        left: 0; /* Slide in */
+    }
+
+    .nav-item {
+        margin: 15px 0;
+    }
+
+    .dropdown-menu {
+        position: static; /* No absolute positioning on mobile */
+        background-color: var(--secondary-color); /* Ensure consistent background */
+        box-shadow: none;
+        border-radius: 0;
+        display: none; /* Controlled by JS or a different mechanism if needed */
+        width: 100%;
+        padding-left: 20px; /* Indent dropdown items */
+    }
+    
+    .dropdown.open .dropdown-menu { /* Class 'open' to be toggled by JS for click */
+        display: block;
+    }
+
+    .dropdown:hover .dropdown-menu { /* Disable hover for mobile, rely on click */
+        display: none;
+    }
+    
+    .dropdown.open:hover .dropdown-menu { /* Keep it open if 'open' class is present */
+        display: block;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0; /* Hide middle bar */
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg); /* Rotate first bar */
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg); /* Rotate third bar */
+    }
+    
+    .welcome-section h1 {
+        font-size: 2.5rem;
+    }
+}
