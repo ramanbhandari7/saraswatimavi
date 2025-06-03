@@ -125,7 +125,7 @@ img.responsive-image {
     color: var(--secondary-color);
 }
 
-/* --- Header & Navigation --- */
+/* --- Header & Navigation (Updated based on image) --- */
 header {
     background-color: var(--bg-color);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -136,43 +136,49 @@ header {
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between; /* This might be redundant if nav-container handles it */
-    align-items: center;
-    height: 80px; 
+    height: 80px; /* Or adjust as per your design's total header height */
 }
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%; /* Takes full width of its parent (container in this case) */
+    align-items: center; /* Vertically align all items */
+    width: 100%;
+    height: 100%; /* Ensure nav-container fills navbar height */
+    padding: 0 15px; /* Re-add if removed from .container or ensure .container handles this */
 }
 
-.nav-logo {
+.nav-logo { /* Text logo "श्री सरस्वती माध्यामिक विद्यालय" */
     font-family: var(--heading-font);
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
-    margin-right: auto; /* Pushes menu items and hamburger to the right */
+    /* white-space: nowrap; Removed to allow wrapping as in image */
+    line-height: 1.2; /* Adjust if text wrapping causes overlap */
+    margin-right: 0.75rem; /* Space between text logo and image logo */
 }
 
-.header-logo-corner {
-    height: 50px; /* Example height, adjust as needed */
+.header-logo-corner { /* School emblem image */
+    height: 60px; /* Adjusted height - check against nav-logo visual height */
     width: auto;
-    margin-left: 15px; /* Space from nav-logo if too close */
-    order: -1; /* If you want it visually before the text logo but after in DOM */
+    margin-right: 1.5rem; /* Space between image logo and nav menu */
+    flex-shrink: 0; /* Prevent logo from shrinking */
 }
 
-.nav-menu {
+.nav-menu { /* UL element containing nav links */
     display: flex;
     align-items: center;
-    margin-left: auto; /* Pushes menu to the right of logo, before hamburger and flag */
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Resetting default ul margins */
+    margin-right: auto; /* KEY: Pushes subsequent items (hamburger, flag) to the right */
 }
 
 .nav-item {
-    margin-left: 1.5rem; 
+    margin-left: 1.5rem; /* Spacing between nav menu items */
+}
+.nav-item:first-child {
+    margin-left: 0; /* No left margin for the first nav item if .nav-menu is directly after logo */
 }
 
 .nav-link {
@@ -181,7 +187,7 @@ header {
     font-size: 1rem;
     color: var(--text-color);
     text-decoration: none;
-    padding: 0.5rem 0.2rem; 
+    padding: 0.5rem 0.2rem;
     position: relative;
     transition: color 0.3s ease;
 }
@@ -198,7 +204,7 @@ header {
 }
 
 .nav-link:hover,
-.nav-link.active-link { 
+.nav-link.active-link {
     color: var(--primary-color);
 }
 .nav-link:hover::after,
@@ -211,11 +217,10 @@ header {
     font-size: 0.8em;
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu (styles largely unchanged from previous correction) */
 .dropdown {
     position: relative;
 }
-
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -232,16 +237,14 @@ header {
     transform: translateY(10px);
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
-
 .dropdown:hover .dropdown-menu,
 .dropdown .dropdown-toggle:focus + .dropdown-menu, 
-.dropdown .dropdown-menu:hover { 
+.dropdown .dropdown-menu:hover {
     display: block;
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
-
 .dropdown-item {
     display: block;
     padding: 0.75rem 1.5rem;
@@ -249,7 +252,6 @@ header {
     font-size: 0.95rem;
     white-space: nowrap;
 }
-
 .dropdown-item:hover {
     background-color: var(--light-bg-color);
     color: var(--primary-color);
@@ -257,16 +259,17 @@ header {
 
 /* Hamburger Menu */
 .hamburger {
-    display: none; 
+    display: none; /* Hidden by default on desktop */
     cursor: pointer;
     background: none;
     border: none;
     padding: 10px; /* Make it easier to tap */
-    margin-left: 1rem; /* Space from nav items */
-    z-index: 1005; /* Ensure it's above other elements if nav menu overlaps */
+    margin-left: 1rem; /* Space from nav-menu if flag wasn't there, or space from flag */
+    flex-shrink: 0;
+    z-index: 1005;
 }
 
-.bar {
+.bar { /* Styles for the lines inside the hamburger */
     display: block;
     width: 28px;
     height: 3px;
@@ -276,135 +279,77 @@ header {
     border-radius: 2px;
 }
 
-.header-flag-corner {
-    height: 40px; /* Example height */
+.header-flag-corner { /* Waving Nepali Flag */
+    height: 50px; /* Adjusted height, should be less than navbar height ideally */
     width: auto;
-    margin-left: 1rem; /* Space from hamburger or nav menu */
+    margin-left: 1rem; /* Space from the element that margin-right:auto pushed it against */
+    flex-shrink: 0; /* Prevent flag from shrinking */
 }
 
-
-/* --- Main Content Sections --- */
-.page-section {
-    padding: 60px 0;
+/* --- Responsive Design for Header (Adjustments from image context) --- */
+@media (max-width: 992px) { /* Medium devices */
+    .nav-logo {
+        font-size: 1.3rem; /* Slightly smaller text */
+        margin-right: 0.5rem;
+    }
+    .header-logo-corner {
+        height: 50px; /* Slightly smaller emblem */
+        margin-right: 1rem;
+    }
+    .nav-item {
+        margin-left: 1rem; /* Less space between nav items */
+    }
+    .header-flag-corner {
+        height: 45px; /* Slightly smaller flag */
+    }
 }
 
-.page-section h2 {
-    text-align: center;
-    margin-bottom: 40px; 
-    position: relative;
-    padding-bottom: 15px;
-}
-.page-section h2::after { 
-    content: '';
-    position: absolute;
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: var(--secondary-color);
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
+@media (max-width: 768px) { /* Tablets and Mobile */
+    .nav-container {
+        /* If you want logo left, hamburger/flag right: */
+        /* justify-content: space-between; */ /* This is one way, an alternative is margin-right: auto on logo */
+    }
+    .nav-logo {
+        margin-right: auto; /* Pushes hamburger & flag to the right */
+        /* Consider further reducing font size or ensuring it fits */
+        font-size: 1.2rem;
+    }
+    .header-logo-corner {
+        display: none; /* Hide emblem on small screens to save space */
+    }
+    .nav-menu { /* This becomes the full-width dropdown */
+        display: none; /* Controlled by .active class */
+        position: absolute;
+        top: 80px; /* Below header */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-color);
+        flex-direction: column;
+        align-items: stretch;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding-bottom: 1rem;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        z-index: 999;
+        margin-right: 0; /* Reset from desktop */
+    }
+    .nav-menu.active {
+        display: flex;
+    }
+    /* Mobile nav-item, nav-link, dropdown styles from previous correction are generally fine */
 
-/* Hero Section */
-.hero-section {
-    background: url('https://images.unsplash.com/photo-1503676260728-1c65c6928240?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
-    color: var(--light-text-color);
-    text-align: center;
-    position: relative;
-    padding: 120px 0; 
-    min-height: 80vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .hamburger {
+        display: block; /* Show hamburger */
+        order: 2; /* If using flex order, to place it after the flag if both are at the end */
+        margin-left: 0.5rem; /* Space from the flag */
+    }
+    .header-flag-corner {
+        height: 40px;
+        order: 1; /* Flag before hamburger */
+        margin-left: 0; /* Reset, spacing will be handled by logo's margin and hamburger's margin */
+    }
+    /* Active hamburger icon styles (.bar transformations) from previous correction are fine */
 }
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 58, 107, 0.6); 
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-section h1 {
-    font-size: 3.5rem;
-    color: var(--light-text-color);
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.hero-section p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.hero-section .sub-address {
-    font-size: 1rem;
-    font-style: italic;
-    opacity: 0.9;
-    margin-bottom: 2.5rem;
-}
-
-/* About Section Columns */
-.content-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    align-items: center;
-}
-.column-text, .column-image {
-    flex: 1;
-    min-width: 300px; 
-}
-.column-image img {
-    box-shadow: var(--box-shadow);
-}
-
-/* Highlights Section */
-.highlights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.highlight-card {
-    background-color: var(--bg-color);
-    padding: 30px 25px;
-    text-align: center;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.highlight-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.card-icon {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-}
-
-.highlight-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.75rem;
-    color: var(--primary-color);
-}
-
 /* Programs Section */
 #programs ul {
     list-style: none;
