@@ -288,26 +288,22 @@ header {
 
 /* --- Main Content Sections --- */
 main > .page-section {
-    height: 100vh; /* MODIFIED: Make section take full viewport height */
-    display: flex; /* MODIFIED: Enable flexbox for vertical centering */
-    flex-direction: column; /* MODIFIED: Stack section content (title, container) vertically */
-    justify-content: center; /* MODIFIED: Vertically center the content block */
-    padding-top: 60px;    /* Existing vertical padding */
-    padding-bottom: 60px; /* Existing vertical padding */
-    /* Horizontal padding is handled by the .container inside */
-    overflow-y: auto; /* MODIFIED: Allow internal scrolling if content exceeds 100vh */
-    /* box-sizing: border-box; is already globally set */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    overflow-y: auto;
+    position: relative; /* Needed for potential overlays on all sections */
 }
 
-/* Ensure .container inside a flex section is handled correctly for width and centering */
 .page-section > .container {
-    /* Width and max-width are already defined in .container general styles */
-    /* margin: 0 auto; from .container general styles handles horizontal centering */
-    /* If content inside container is very tall, the section's overflow-y will handle it */
+    position: relative; /* Ensure container content is above section overlay if any */
+    z-index: 2;
 }
 
-
-.page-section h2 { /* Styling for section titles */
+.page-section h2 {
     text-align: center;
     margin-bottom: 40px; 
     position: relative;
@@ -327,48 +323,48 @@ main > .page-section {
 }
 
 /* Hero Section Specifics */
-#home.hero-section { /* Target the hero section specifically */
-    height: 100vh; /* MODIFIED: Ensure it's full viewport height */
-    min-height: 0; /* MODIFIED: Override any previous min-height */
-    /* It already has display: flex, align-items: center, justify-content: center
-       which centers its .hero-content div. This is good. */
-    /* Its existing padding (120px 0 or similar) remains, framing the .hero-content. */
-    /* background and overlay styles remain as they were */
-    background: url('https://images.unsplash.com/photo-1503676260728-1c65c6928240?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+#home.hero-section {
+    background: url('../docs/main.jpg') no-repeat center center/cover; /* MODIFIED: Background image */
     color: var(--light-text-color);
     text-align: center;
-    position: relative; /* For overlay */
+    height: 100vh;
+    min-height: 0;
+    /* Flex properties for centering content are inherited from main > .page-section or can be specified here */
 }
 
-.hero-overlay {
+/* Generic Overlay for sections with background images */
+.section-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 58, 107, 0.6); 
-    z-index: 1;
+    z-index: 1; /* Below .container content */
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 20px 0; /* Add some padding if hero content feels too close to edges on smaller 100vh */
+#home.hero-section .section-overlay { /* Specific overlay for hero */
+    background-color: rgba(0, 58, 107, 0.6); /* Dark blueish overlay */
+}
+
+.hero-content { /* This is the .container inside #home */
+    padding: 20px 0;
+    /* Text color is var(--light-text-color) due to inheritance from #home */
 }
 
 .hero-section h1 {
     font-size: 3.5rem;
-    color: var(--light-text-color);
+    color: var(--light-text-color); /* Explicitly set for hero h1 */
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.hero-section p {
+.hero-section p { /* For tagline and sub-address */
     font-size: 1.3rem;
     margin-bottom: 2rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    color: var(--light-text-color); /* Explicitly set for hero paragraphs */
 }
 .hero-section .sub-address {
     font-size: 1rem;
@@ -377,7 +373,25 @@ main > .page-section {
     margin-bottom: 2.5rem;
 }
 
-/* About Section Columns */
+/* About Section Specifics */
+#about.page-section {
+    background: url('../docs/school.jpg') no-repeat center center/cover; /* MODIFIED: Background image */
+    color: var(--light-text-color); /* Default to light text, adjust if needed */
+}
+
+#about.page-section .section-overlay { /* Overlay for about section */
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly darker overlay for general readability */
+}
+
+#about.page-section h2,
+#about.page-section p {
+    color: var(--light-text-color); /* Ensure text is light on dark/image background */
+}
+#about.page-section h2 .icon-title { /* Make icon in title also light if it inherits dark */
+    color: var(--secondary-color); /* Or var(--light-text-color) if secondary doesn't contrast well */
+}
+
+
 .content-columns {
     display: flex;
     flex-wrap: wrap;
@@ -388,11 +402,26 @@ main > .page-section {
     flex: 1;
     min-width: 300px; 
 }
-.column-image img {
+.column-image img { /* This is the placeholder image within the about section, not the background */
     box-shadow: var(--box-shadow);
+    border: 3px solid var(--light-text-color); /* Optional: border for better visibility on dark bg */
 }
 
-/* Highlights Section */
+/* Highlights Section - Assuming this doesn't have a full bg image, so text color remains default */
+#highlights.page-section h2,
+#highlights.page-section h3,
+#highlights.page-section p {
+    color: var(--text-color); /* Reset to default text color if section is light */
+}
+#highlights.page-section h2 .icon-title,
+#highlights.page-section .card-icon {
+    color: var(--primary-color); /* Or var(--secondary-color) as preferred */
+}
+#highlights.page-section h3 {
+    color: var(--primary-color); /* Ensure heading color is consistent */
+}
+
+
 .highlights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -401,7 +430,8 @@ main > .page-section {
 }
 
 .highlight-card {
-    background-color: var(--bg-color);
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for cards if on bg image */
+    /* Or use var(--bg-color) if section has solid light bg */
     padding: 30px 25px;
     text-align: center;
     border-radius: var(--border-radius);
@@ -416,32 +446,32 @@ main > .page-section {
 
 .card-icon {
     font-size: 3rem;
-    color: var(--primary-color);
+    /* color: var(--primary-color); Handled in #highlights specific styles */
     margin-bottom: 1.5rem;
 }
 
 .highlight-card h3 {
     font-size: 1.4rem;
     margin-bottom: 0.75rem;
-    color: var(--primary-color);
+    /* color: var(--primary-color); Handled in #highlights specific styles */
 }
 
-/* Programs Section */
-#programs ul {
+/* Programs Section - Assuming default text colors */
+#programs.page-section ul {
     list-style: none;
     padding-left: 0;
 }
-#programs li {
+#programs.page-section li {
     padding: 0.5rem 0;
     font-size: 1.1rem;
 }
-.list-icon {
+#programs.page-section .list-icon {
     color: var(--secondary-color);
     margin-right: 10px;
 }
 
 
-/* News Section */
+/* News Section - Assuming default text colors */
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -475,7 +505,7 @@ main > .page-section {
 }
 
 
-/* Gallery Section */
+/* Gallery Section - Assuming default text colors */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -495,7 +525,7 @@ main > .page-section {
     opacity: 0.9;
 }
 
-/* Contact Section */
+/* Contact Section - Assuming default text colors */
 .contact-info p {
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
@@ -518,14 +548,11 @@ main > .page-section {
     border-radius: var(--border-radius);
     overflow: hidden; 
     box-shadow: var(--box-shadow);
-    /* Responsive map: an aspect ratio box can be useful if not fixed height */
-    /* position: relative; padding-bottom: 56.25%; height: 0; */
 }
 .map-container iframe {
     display: block; 
     width: 100%; 
-    height: 350px; /* Adjust height as needed, especially within 100vh section */
-    /* If using aspect ratio box: position: absolute; top: 0; left: 0; height: 100%; */
+    height: 350px; 
     border: 0; 
 }
 
@@ -536,7 +563,6 @@ footer {
     color: var(--light-text-color);
     text-align: center;
     padding: 30px 0;
-    /* margin-top: 40px; Footer will now appear after all 100vh sections */
 }
 
 footer p {
@@ -580,12 +606,11 @@ footer a:hover {
     .header-flag-corner {
         height: 45px;
     }
-     /* Adjust section padding for slightly less vertical space used by padding */
     main > .page-section {
         padding-top: 40px;
         padding-bottom: 40px;
     }
-    .hero-content { /* Reduce padding inside hero for smaller viewports */
+    .hero-content {
         padding: 10px 0;
     }
 }
@@ -604,7 +629,7 @@ footer a:hover {
     .nav-menu {
         display: none; 
         position: absolute;
-        top: var(--header-height); /* Use variable */
+        top: var(--header-height);
         left: 0;
         width: 100%;
         background-color: var(--bg-color);
@@ -705,15 +730,19 @@ footer a:hover {
     .content-columns {
         flex-direction: column;
     }
+    .column-text {
+        padding: 10px; /* Add some padding around text on mobile if bg image is busy */
+        background-color: rgba(0,0,0,0.1); /* Optional very light bg for text block */
+        border-radius: var(--border-radius);
+    }
     .column-image {
         margin-top: 20px;
     }
     
-    .page-section h2 { font-size: 1.8rem; margin-bottom: 20px; } /* Less margin for titles */
+    .page-section h2 { font-size: 1.8rem; margin-bottom: 20px; }
     .highlights-grid, .news-grid, .gallery-grid {
         grid-template-columns: 1fr; 
     }
-     /* Adjust section padding further for smaller screens */
     main > .page-section {
         padding-top: 30px;
         padding-bottom: 30px;
@@ -722,7 +751,7 @@ footer a:hover {
         padding: 5px 0;
     }
     .map-container iframe {
-        height: 250px; /* Reduce map height on smaller screens */
+        height: 250px;
     }
 }
 
@@ -751,7 +780,6 @@ footer a:hover {
     .hero-section h1 { font-size: 2rem; }
     .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
 
-    /* Further reduce section padding for very small screens */
     main > .page-section {
         padding-top: 20px;
         padding-bottom: 20px;
