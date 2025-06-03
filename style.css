@@ -14,6 +14,7 @@
     --body-font: 'Open Sans', sans-serif;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --border-radius: 8px;
+    --header-height: 80px; /* Define header height for potential calculations */
 }
 
 * {
@@ -40,7 +41,7 @@ body {
     width: 90%;
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 15px; /* Ensure container provides horizontal padding */
+    padding: 0 15px; /* Horizontal padding within the container */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -125,7 +126,7 @@ img.responsive-image {
     color: var(--secondary-color);
 }
 
-/* --- Header & Navigation (Updated based on image) --- */
+/* --- Header & Navigation --- */
 header {
     background-color: var(--bg-color);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -133,54 +134,53 @@ header {
     top: 0;
     z-index: 1000;
     width: 100%;
+    height: var(--header-height); /* Use CSS variable */
 }
 
 .navbar {
-    height: 80px; /* Total header height */
+    height: 100%; /* Navbar takes full height of header */
 }
 
-.nav-container { /* This is the .container inside .navbar */
+.nav-container {
     display: flex;
-    align-items: center; /* Vertically align all items */
-    height: 100%; /* Ensure nav-container fills navbar height */
-    /* padding for .nav-container is handled by the .container class itself */
+    align-items: center;
+    height: 100%;
 }
 
-.nav-logo { /* Text logo "श्री सरस्वती माध्यामिक विद्यालय" */
+.nav-logo {
     font-family: var(--heading-font);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
-    line-height: 1.2; /* Adjust if text wrapping causes overlap */
-    margin-right: 0.75rem; /* Space between text logo and image logo */
-    flex-shrink: 1; /* Allow text logo to shrink if needed, but not too much */
-    min-width: 150px; /* Give it some minimum width */
+    line-height: 1.2;
+    margin-right: 0.75rem;
+    flex-shrink: 1;
+    min-width: 150px;
 }
 
-.header-logo-corner { /* School emblem image */
-    height: 60px; /* Adjusted height - check against nav-logo visual height */
+.header-logo-corner {
+    height: 60px;
     width: auto;
-    margin-right: 1.5rem; /* Space between image logo and nav menu */
-    flex-shrink: 0; /* Prevent logo from shrinking */
+    margin-right: 1.5rem;
+    flex-shrink: 0;
 }
 
-.nav-menu { /* UL element containing nav links */
+.nav-menu {
     display: flex;
     align-items: center;
     list-style: none;
     padding: 0;
-    margin: 0; /* Resetting default ul margins */
-    margin-right: auto; /* KEY: Pushes subsequent items (flag, hamburger) to the right */
+    margin: 0;
+    margin-right: auto;
 }
 
 .nav-item {
-    margin-left: 1.5rem; /* Spacing between nav menu items */
+    margin-left: 1.5rem;
 }
-.nav-item:first-child { /* Only if .nav-menu is not the first child (i.e. after logo) */
+.nav-item:first-child {
     margin-left: 0;
 }
-
 
 .nav-link {
     font-family: var(--body-font);
@@ -191,7 +191,7 @@ header {
     padding: 0.5rem 0.2rem;
     position: relative;
     transition: color 0.3s ease;
-    white-space: nowrap; /* Prevent nav links from wrapping */
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -219,7 +219,6 @@ header {
     font-size: 0.8em;
 }
 
-/* Dropdown Menu */
 .dropdown {
     position: relative;
 }
@@ -259,19 +258,18 @@ header {
     color: var(--primary-color);
 }
 
-/* Hamburger Menu */
 .hamburger {
-    display: none; /* Hidden by default on desktop */
+    display: none;
     cursor: pointer;
     background: none;
     border: none;
     padding: 10px;
-    margin-left: 1rem; /* Space from the flag (or nav-menu if flag wasn't there) */
+    margin-left: 1rem;
     flex-shrink: 0;
     z-index: 1005;
 }
 
-.bar { /* Styles for the lines inside the hamburger */
+.bar {
     display: block;
     width: 28px;
     height: 3px;
@@ -281,20 +279,35 @@ header {
     border-radius: 2px;
 }
 
-.header-flag-corner { /* Waving Nepali Flag */
+.header-flag-corner {
     height: 50px;
     width: auto;
-    margin-left: 1rem; /* This will be space from .nav-menu due to margin-right: auto on nav-menu */
-    flex-shrink: 0; /* Prevent flag from shrinking */
+    margin-left: 1rem;
+    flex-shrink: 0;
 }
-
 
 /* --- Main Content Sections --- */
-.page-section {
-    padding: 60px 0;
+main > .page-section {
+    height: 100vh; /* MODIFIED: Make section take full viewport height */
+    display: flex; /* MODIFIED: Enable flexbox for vertical centering */
+    flex-direction: column; /* MODIFIED: Stack section content (title, container) vertically */
+    justify-content: center; /* MODIFIED: Vertically center the content block */
+    padding-top: 60px;    /* Existing vertical padding */
+    padding-bottom: 60px; /* Existing vertical padding */
+    /* Horizontal padding is handled by the .container inside */
+    overflow-y: auto; /* MODIFIED: Allow internal scrolling if content exceeds 100vh */
+    /* box-sizing: border-box; is already globally set */
 }
 
-.page-section h2 {
+/* Ensure .container inside a flex section is handled correctly for width and centering */
+.page-section > .container {
+    /* Width and max-width are already defined in .container general styles */
+    /* margin: 0 auto; from .container general styles handles horizontal centering */
+    /* If content inside container is very tall, the section's overflow-y will handle it */
+}
+
+
+.page-section h2 { /* Styling for section titles */
     text-align: center;
     margin-bottom: 40px; 
     position: relative;
@@ -313,17 +326,18 @@ header {
     border-radius: 2px;
 }
 
-/* Hero Section */
-.hero-section {
+/* Hero Section Specifics */
+#home.hero-section { /* Target the hero section specifically */
+    height: 100vh; /* MODIFIED: Ensure it's full viewport height */
+    min-height: 0; /* MODIFIED: Override any previous min-height */
+    /* It already has display: flex, align-items: center, justify-content: center
+       which centers its .hero-content div. This is good. */
+    /* Its existing padding (120px 0 or similar) remains, framing the .hero-content. */
+    /* background and overlay styles remain as they were */
     background: url('https://images.unsplash.com/photo-1503676260728-1c65c6928240?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
     color: var(--light-text-color);
     text-align: center;
-    position: relative;
-    padding: 120px 0; 
-    min-height: 80vh; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative; /* For overlay */
 }
 
 .hero-overlay {
@@ -339,6 +353,7 @@ header {
 .hero-content {
     position: relative;
     z-index: 2;
+    padding: 20px 0; /* Add some padding if hero content feels too close to edges on smaller 100vh */
 }
 
 .hero-section h1 {
@@ -503,11 +518,14 @@ header {
     border-radius: var(--border-radius);
     overflow: hidden; 
     box-shadow: var(--box-shadow);
+    /* Responsive map: an aspect ratio box can be useful if not fixed height */
+    /* position: relative; padding-bottom: 56.25%; height: 0; */
 }
 .map-container iframe {
     display: block; 
     width: 100%; 
-    height: 450px; 
+    height: 350px; /* Adjust height as needed, especially within 100vh section */
+    /* If using aspect ratio box: position: absolute; top: 0; left: 0; height: 100%; */
     border: 0; 
 }
 
@@ -518,7 +536,7 @@ footer {
     color: var(--light-text-color);
     text-align: center;
     padding: 30px 0;
-    margin-top: 40px; 
+    /* margin-top: 40px; Footer will now appear after all 100vh sections */
 }
 
 footer p {
@@ -557,28 +575,36 @@ footer a:hover {
         margin-left: 1rem;
     }
     .nav-link {
-        font-size: 0.9rem; /* Slightly smaller nav links */
+        font-size: 0.9rem;
     }
     .header-flag-corner {
         height: 45px;
+    }
+     /* Adjust section padding for slightly less vertical space used by padding */
+    main > .page-section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .hero-content { /* Reduce padding inside hero for smaller viewports */
+        padding: 10px 0;
     }
 }
 
 @media (max-width: 768px) { /* Small devices ~ mobile landscape, large phones */
     .nav-logo {
         font-size: 1.2rem;
-        margin-right: auto; /* Pushes flag and hamburger to the right */
-        flex-shrink: 1; /* Allow it to shrink a bit more */
-        min-width: 100px; /* Or whatever fits best */
+        margin-right: auto;
+        flex-shrink: 1;
+        min-width: 100px;
     }
     .header-logo-corner {
-        display: none; /* Hide school emblem image to save space */
+        display: none;
     }
 
-    .nav-menu { /* This becomes the full-width dropdown */
+    .nav-menu {
         display: none; 
         position: absolute;
-        top: 80px; /* Below header */
+        top: var(--header-height); /* Use variable */
         left: 0;
         width: 100%;
         background-color: var(--bg-color);
@@ -586,10 +612,10 @@ footer a:hover {
         align-items: stretch; 
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         padding-bottom: 1rem; 
-        max-height: calc(100vh - 80px); 
+        max-height: calc(100vh - var(--header-height)); 
         overflow-y: auto; 
         z-index: 999; 
-        margin-right: 0; /* Reset desktop margin */
+        margin-right: 0;
     }
     .nav-menu.active {
         display: flex; 
@@ -605,8 +631,8 @@ footer a:hover {
         padding: 1rem 1.5rem; 
         border-bottom: 1px solid var(--border-color);
         text-align: left;
-        font-size: 1rem; /* Reset to base or slightly larger for touch */
-        white-space: normal; /* Allow link text to wrap if necessary */
+        font-size: 1rem;
+        white-space: normal;
     }
     .nav-link:hover, .nav-link.active-link {
         background-color: var(--light-bg-color);
@@ -615,22 +641,22 @@ footer a:hover {
         display: none;
     }
 
-    .nav-link i.fa-caret-down { /* Caret in mobile dropdown */
-        float: right; /* Position caret to the right */
+    .nav-link i.fa-caret-down {
+        float: right;
         transition: transform 0.3s ease;
     }
 
-    .dropdown { /* Full width for mobile */
+    .dropdown {
         width: 100%;
     }
     .dropdown-menu {
-        position: static; /* No absolute positioning in mobile */
-        display: none; /* Controlled by JS/ .open class */
+        position: static;
+        display: none;
         width: 100%;
         box-shadow: none;
         border-radius: 0;
-        padding-left: 0; /* Remove desktop indent, handle via dropdown-item */
-        background-color: #fdfdfd; /* Slightly different bg for mobile dropdown */
+        padding-left: 0;
+        background-color: #fdfdfd;
         opacity: 1;
         visibility: visible;
         transform: none;
@@ -645,7 +671,7 @@ footer a:hover {
     }
     .dropdown-item {
         padding: 0.8rem 1.5rem;
-        padding-left: 2.5rem; /* Indent dropdown items */
+        padding-left: 2.5rem;
         border-bottom: 1px solid #eee;
     }
     .dropdown-item:last-child {
@@ -653,14 +679,14 @@ footer a:hover {
     }
 
     .hamburger {
-        display: block; /* Show hamburger */
-        order: 2; /* Flag first, then hamburger */
-        margin-left: 0.5rem; /* Space from the flag */
+        display: block;
+        order: 2;
+        margin-left: 0.5rem;
     }
     .header-flag-corner {
         height: 40px;
-        order: 1; /* Flag appears before hamburger */
-        margin-left: 0; /* Margin handled by .nav-logo's margin-right: auto */
+        order: 1;
+        margin-left: 0;
     }
     
     .hamburger.active .bar:nth-child(1) {
@@ -673,10 +699,6 @@ footer a:hover {
         transform: translateY(-9px) rotate(-45deg);
     }
 
-    .hero-section {
-        padding: 80px 0;
-        min-height: 60vh;
-    }
     .hero-section h1 { font-size: 2.2rem; }
     .hero-section p { font-size: 1rem; }
 
@@ -687,28 +709,39 @@ footer a:hover {
         margin-top: 20px;
     }
     
-    .page-section h2 { font-size: 1.8rem; }
+    .page-section h2 { font-size: 1.8rem; margin-bottom: 20px; } /* Less margin for titles */
     .highlights-grid, .news-grid, .gallery-grid {
         grid-template-columns: 1fr; 
+    }
+     /* Adjust section padding further for smaller screens */
+    main > .page-section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .hero-content {
+        padding: 5px 0;
+    }
+    .map-container iframe {
+        height: 250px; /* Reduce map height on smaller screens */
     }
 }
 
 @media (max-width: 480px) { /* Extra small devices ~ portrait phones */
     html { font-size: 15px; } 
     .nav-logo { 
-        font-size: 1.1rem; /* Further reduce if necessary */
-        min-width: 0; /* Allow full shrink */
-        max-width: calc(100% - 100px); /* Approximate width for flag + hamburger */
-        white-space: normal; /* Allow school name to wrap */
+        font-size: 1.1rem;
+        min-width: 0;
+        max-width: calc(100% - 100px);
+        white-space: normal;
     }
     .header-flag-corner {
         height: 35px;
     }
     .hamburger {
-        padding: 8px; /* Adjust padding if needed */
+        padding: 8px;
     }
     .bar {
-        width: 24px; /* Smaller bars */
+        width: 24px;
         height: 2px;
         margin: 5px auto;
     }
@@ -717,6 +750,13 @@ footer a:hover {
 
     .hero-section h1 { font-size: 2rem; }
     .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
+
+    /* Further reduce section padding for very small screens */
+    main > .page-section {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .page-section h2 { font-size: 1.6rem; margin-bottom: 15px; }
 }
 
 /* Accessibility: Focus visible for keyboard navigation */
