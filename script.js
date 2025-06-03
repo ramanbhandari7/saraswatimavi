@@ -28,12 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close mobile menu when a nav link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (navMenu.classList.contains('active')) { // Only if mobile menu is active
+            if (navMenu && navMenu.classList.contains('active')) { // Only if mobile menu is active
                 // If it's not a dropdown toggle, close the menu
                 if (!link.classList.contains('dropdown-toggle')) {
-                    hamburger.classList.remove('active');
+                    if (hamburger) {
+                        hamburger.classList.remove('active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
                     navMenu.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
                 }
             }
         });
@@ -43,40 +45,43 @@ document.addEventListener('DOMContentLoaded', () => {
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', (e) => {
             // Only activate this behavior for mobile view (when hamburger is visible)
-            if (window.getComputedStyle(hamburger).display !== 'none') {
+            if (hamburger && window.getComputedStyle(hamburger).display !== 'none') {
                 e.preventDefault(); // Prevent link navigation
-                const parentDropdown = toggle.parentElement;
+                const parentDropdown = toggle.parentElement; // .nav-item.dropdown
                 const submenu = parentDropdown.querySelector('.dropdown-menu');
                 
-                parentDropdown.classList.toggle('open');
-                submenu.classList.toggle('open'); // This class controls display in CSS
-                
-                const isSubmenuOpen = parentDropdown.classList.contains('open');
-                toggle.setAttribute('aria-expanded', isSubmenuOpen.toString());
+                if (parentDropdown && submenu) {
+                    parentDropdown.classList.toggle('open');
+                    submenu.classList.toggle('open'); // This class controls display in CSS for mobile
+                    
+                    const isSubmenuOpen = parentDropdown.classList.contains('open');
+                    toggle.setAttribute('aria-expanded', isSubmenuOpen.toString());
+                }
             }
         });
     });
     
     // Close mobile menu if clicked outside of it
     document.addEventListener('click', (event) => {
-        const isClickInsideNav = navMenu.contains(event.target);
-        const isClickOnHamburger = hamburger.contains(event.target);
+        if (navMenu && hamburger && navMenu.classList.contains('active')) {
+            const isClickInsideNav = navMenu.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
 
-        if (navMenu.classList.contains('active') && !isClickInsideNav && !isClickOnHamburger) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-             // Close any open mobile dropdowns
-            document.querySelectorAll('.nav-item.dropdown.open').forEach(openDropdown => {
-                openDropdown.classList.remove('open');
-                const toggle = openDropdown.querySelector('.dropdown-toggle');
-                const submenu = openDropdown.querySelector('.dropdown-menu');
-                if (toggle) toggle.setAttribute('aria-expanded', 'false');
-                if (submenu) submenu.classList.remove('open');
-            });
+            if (!isClickInsideNav && !isClickOnHamburger) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                 // Close any open mobile dropdowns
+                document.querySelectorAll('.nav-item.dropdown.open').forEach(openDropdown => {
+                    openDropdown.classList.remove('open');
+                    const toggle = openDropdown.querySelector('.dropdown-toggle');
+                    const submenu = openDropdown.querySelector('.dropdown-menu');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                    if (submenu) submenu.classList.remove('open');
+                });
+            }
         }
     });
-
 
     // Set current year in footer
     const currentYearSpan = document.getElementById('currentYear');
