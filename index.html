@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>श्री सरस्वती माध्यमिक विद्यालय</title>
     
+    <!-- Favicon -->
+    <link rel="icon" href="docs/favicon.png" type="image/png"> <!-- Assuming favicon.png is in docs folder -->
+
     <!-- Google Fonts -->
-    <link rel="icon" href="docs/favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -14,6 +16,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,7 +24,7 @@
         <nav class="navbar">
             <div class="nav-container container">
                 <a href="index.html" class="nav-logo">श्री सरस्वती माध्यमिक विद्यालय</a>
-                <img src="docs/logo.jpeg" alt="श्री सरस्वती माध्यामिक विद्यालय Logo" class="header-logo-corner">
+                <img src="docs/logo.jpeg" alt="श्री सरस्वती माध्यमिक विद्यालय Logo" class="header-logo-corner">
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="#home" class="nav-link">मुख्य पृष्ठ</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link">हाम्रो बारेमा</a></li>
@@ -50,39 +53,33 @@
     </header>
 
     <main>
-        <!-- In your index.html file -->
+        <section id="home" class="page-section welcome-section hero-section">
+            <!-- Overlay for #home is hidden by CSS if background is white. -->
+            <!-- If an overlay div was here, it's fine, CSS will handle it. -->
+            <div class="container hero-content">
+                <h1>श्री सरस्वती माध्यामिक विद्यालयमा स्वागत छ!</h1>
+                <p>गुणस्तरीय शिक्षा मार्फत उज्ज्वल भविष्य निर्माण गर्दै।</p>
+                <p class="sub-address">धरान उमनपा - ६, पानबारी, सुनसरी</p>
+                <a href="#about" class="btn btn-primary">थप जान्नुहोस्</a>
+            </div>
+        </section>
 
-<main>
-    <section id="home" class="page-section welcome-section hero-section">
-        <!-- Overlay for #home is hidden by CSS if background is white as per last image. -->
-        <!-- If you added <div class="section-overlay"></div> here, it's fine, CSS will hide it. -->
-        <div class="container hero-content">
-            <h1>श्री सरस्वती माध्यामिक विद्यालयमा स्वागत छ!</h1>
-            <p>गुणस्तरीय शिक्षा मार्फत उज्ज्वल भविष्य निर्माण गर्दै।</p>
-            <p class="sub-address">धरान उमनपा - ६, पानबारी, सुनसरी</p>
-            <a href="#about" class="btn btn-primary">थप जान्नुहोस्</a>
-        </div>
-    </section>
-
-    <section id="about" class="page-section">
-        <div class="section-overlay"></div>
-        <div class="container">
-            <h2><i class="fas fa-school icon-title"></i> हाम्रो बारेमा</h2>
-            <div class="content-columns">
-                <div class="column-text">
-                    <p>श्री सरस्वती माध्यामिक विद्यालय, वि.सं. २०२२ मा स्थापित, सुनसरी जिल्लाको धरान उपमहानगरपालिका वडा नं. ६, पानबारीमा अवस्थित एक प्रतिष्ठित सामुदायिक विद्यालय हो। स्थापनाकालदेखि नै हामीले यस क्षेत्रका बालबालिकाहरूलाई गुणस्तरीय, समयसापेक्ष र व्यावहारिक शिक्षा प्रदान गर्दै आएका छौं।</p>
-                    <p>हाम्रो मुख्य उद्देश्य विद्यार्थीहरूमा नैतिक आचरण, अनुशासन, र सामाजिक उत्तरदायित्वको भावना विकास गर्नु हो। हामी एक सुरक्षित, सहयोगी, र प्रेरणादायक सिकाइ वातावरण प्रदान गर्न प्रतिबद्ध छौं जहाँ प्रत्येक विद्यार्थीले आफ्नो पूर्ण क्षमता हासिल गर्न सकोस्।</p>
-                </div>
-                <div class="column-image">
-                    <img src="https://via.placeholder.com/400x300/005A9C/FFFFFF?text=विद्यालय+भवन" alt="विद्यालय भवन" class="responsive-image">
-                    <!-- Or use an actual image if you have one: <img src="docs/some_other_image.jpg" alt="विद्यालय भवन" class="responsive-image"> -->
+        <section id="about" class="page-section">
+            <div class="section-overlay"></div> <!-- Overlay for background image of #about -->
+            <div class="container">
+                <h2><i class="fas fa-school icon-title"></i> हाम्रो बारेमा</h2>
+                <div class="content-columns">
+                    <div class="column-text">
+                        <p>श्री सरस्वती माध्यामिक विद्यालय, वि.सं. २०२२ मा स्थापित, सुनसरी जिल्लाको धरान उपमहानगरपालिका वडा नं. ६, पानबारीमा अवस्थित एक प्रतिष्ठित सामुदायिक विद्यालय हो। स्थापनाकालदेखि नै हामीले यस क्षेत्रका बालबालिकाहरूलाई गुणस्तरीय, समयसापेक्ष र व्यावहारिक शिक्षा प्रदान गर्दै आएका छौं।</p>
+                        <p>हाम्रो मुख्य उद्देश्य विद्यार्थीहरूमा नैतिक आचरण, अनुशासन, र सामाजिक उत्तरदायित्वको भावना विकास गर्नु हो। हामी एक सुरक्षित, सहयोगी, र प्रेरणादायक सिकाइ वातावरण प्रदान गर्न प्रतिबद्ध छौं जहाँ प्रत्येक विद्यार्थीले आफ्नो पूर्ण क्षमता हासिल गर्न सकोस्।</p>
+                    </div>
+                    <div class="column-image">
+                        <img src="https://via.placeholder.com/400x300/005A9C/FFFFFF?text=विद्यालय+भवन" alt="विद्यालय भवन" class="responsive-image">
+                        <!-- Consider replacing placeholder: <img src="docs/school_building.jpg" alt="विद्यालय भवन" class="responsive-image"> -->
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-</main>
-</section>
+        </section>
         
         <section id="highlights" class="page-section bg-light">
             <div class="container">
@@ -181,7 +178,7 @@
                 <div class="contact-info">
                     <p><i class="fas fa-fw fa-map-pin contact-icon"></i> <strong>ठेगाना:</strong> धरान उमनपा - ६, पानबारी, सुनसरी, नेपाल</p>
                     <p><i class="fas fa-fw fa-envelope contact-icon"></i> <strong>इमेल:</strong> <a href="mailto:info@saraswatimv.edu.np">info@saraswatimv.edu.np</a> (उदाहरण)</p>
-                    <p><i class="fas fa-fw fa-phone contact-icon"></i> <strong>फोन:</strong> <a href="tel:+977XXXXXXXXXX">+९७७-XXXXXXXXXX</a> (उदाहरण)</p>
+                    <p><i class="fas fa-fw fa-phone contact-icon"></i> <strong>फोन:</strong> <a href="tel:+9770000000000">+९७७-XXXXXXXXXX</a> (उदाहरण)</p> <!-- Changed placeholder number for validity -->
                 </div>
                 <div class="map-container">
                     <iframe 
