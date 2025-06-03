@@ -5,8 +5,9 @@
     --secondary-color: #FDB813; /* Selective Yellow */
     --secondary-color-darker: #E4A611; /* Approx 10% darker for hover states */
     --accent-color: #E31B23; /* A touch of red for specific highlights if needed */
-    --text-color: #333333;
+    --text-color: #333333; /* Standard dark text color */
     --light-text-color: #FFFFFF;
+    --hero-heading-color: #DDDDDD; /* Very light gray for hero H1 on white bg */
     --bg-color: #FFFFFF; /* White background */
     --light-bg-color: #f8f9fa;
     --border-color: #dee2e6;
@@ -91,7 +92,7 @@ img.responsive-image {
     border: none;
 }
 
-.btn-primary { /* This is the yellow button in hero */
+.btn-primary { /* Yellow button, e.g., in hero */
     background-color: var(--secondary-color);
     color: var(--text-color); /* Dark text on yellow */
     border: 2px solid var(--secondary-color);
@@ -322,75 +323,66 @@ main > .page-section {
     border-radius: 2px;
 }
 
-/* Hero Section Specifics - Updated for white background */
+/* Hero Section Specifics - Updated for white background and specific text colors */
 #home.hero-section {
-    background-color: var(--bg-color); /* MODIFIED: White background */
-    /* background-image: none; /* Explicitly remove image if inherited */
+    background-color: var(--bg-color); /* White background */
     text-align: center;
     height: 100vh;
     min-height: 0;
-    /* Flex properties for centering are inherited from main > .page-section */
 }
 
-/* Remove or hide overlay for hero section if it exists in HTML */
-#home.hero-section .section-overlay {
+#home.hero-section .section-overlay { /* Hide overlay if it was in HTML */
     display: none;
 }
 
-.hero-content { /* This is the .container inside #home */
+.hero-content { /* The .container inside #home */
     padding: 20px 0;
 }
 
-.hero-section h1 {
-    font-size: 3.5rem; /* Or adjust to match image */
-    color: #DDDDDD; /* MODIFIED: Very light gray color */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* MODIFIED: Subtle shadow for light text on white */
-    margin-bottom: 2rem; /* Increased margin if other p tags are hidden */
+.hero-section h1 { /* Main welcome message */
+    font-size: 3.5rem;
+    color: var(--hero-heading-color); /* Very light gray for H1 */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Subtle shadow for light text on white */
+    margin-bottom: 1.5rem; /* Adjust spacing as needed */
 }
 
-/* Styles for tagline and sub-address if they are present in HTML and should be visible */
-/* If they are hidden, these styles won't matter much, but good to define */
-.hero-section p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
+.hero-section p { /* Tagline */
+    font-size: 1.3rem; /* Or adjust to match image */
+    margin-bottom: 1rem; /* Space between tagline and address */
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    color: var(--text-color); /* MODIFIED: Default dark text if they are to be shown on white */
-    /* If tagline/address are meant to be HIDDEN, either remove from HTML or set color: transparent; */
+    color: var(--text-color); /* Standard dark text color */
 }
-.hero-section p.sub-address { /* Specifically for address if needed */
+.hero-section p.sub-address { /* Address line */
     font-size: 1rem;
     font-style: italic;
-    opacity: 0.9;
-    margin-bottom: 2.5rem;
-    color: var(--text-color); /* MODIFIED */
+    opacity: 0.9; /* Slightly transparent dark text */
+    margin-bottom: 2.5rem; /* Space before button */
+    color: var(--text-color); /* Standard dark text color */
 }
-/* If the tagline and sub-address <p> tags are REMOVED from HTML for the hero section,
-   then the .hero-section h1 margin-bottom might need adjustment,
-   and the .btn-primary within .hero-content will naturally be closer to the h1.
-   The .hero-section .btn-primary is already styled. */
+/* .btn-primary is already styled for the button */
 
 
 /* About Section Specifics */
 #about.page-section {
-    background: url('../docs/school.jpg') no-repeat center center/cover;
-    color: var(--light-text-color);
+    background: url('../docs/school.jpg') no-repeat center center/cover; /* Adjust path if needed */
+    color: var(--light-text-color); /* Default text color for this section */
 }
 
 #about.page-section .section-overlay {
-    position: absolute; /* ensure it is positioned correctly */
-    top:0; left:0; width:100%; height:100%; /* ensure it covers */
-    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
     z-index: 1;
 }
 
-#about.page-section h2,
+#about.page-section h2, /* Headings and paragraphs in about section */
 #about.page-section p {
-    color: var(--light-text-color);
+    color: var(--light-text-color); /* Ensure they are light on dark background */
 }
-#about.page-section h2 .icon-title {
-    color: var(--secondary-color);
+#about.page-section h2 .icon-title { /* Icon in title */
+    color: var(--secondary-color); /* Keep it vibrant or change to light-text-color */
 }
 
 .content-columns {
@@ -403,20 +395,23 @@ main > .page-section {
     flex: 1;
     min-width: 300px; 
 }
-.column-image img {
+.column-image img { /* Placeholder image inside about section */
     box-shadow: var(--box-shadow);
-    border: 3px solid var(--light-text-color);
+    border: 3px solid var(--light-text-color); /* Optional border */
 }
 
 /* Highlights Section */
+#highlights.page-section { /* Assuming default white/light background */
+    background-color: var(--light-bg-color); /* Or var(--bg-color) */
+}
 #highlights.page-section h2,
 #highlights.page-section h3,
 #highlights.page-section p {
-    color: var(--text-color);
+    color: var(--text-color); /* Default dark text */
 }
 #highlights.page-section h2 .icon-title,
 #highlights.page-section .card-icon {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Or var(--secondary-color) */
 }
 #highlights.page-section h3 {
     color: var(--primary-color);
@@ -430,7 +425,7 @@ main > .page-section {
 }
 
 .highlight-card {
-    background-color: var(--bg-color); /* Solid white cards if on a light section BG */
+    background-color: var(--bg-color); /* Solid white cards */
     padding: 30px 25px;
     text-align: center;
     border-radius: var(--border-radius);
@@ -574,14 +569,11 @@ footer a:hover {
 
 /* --- Responsive Design (Media Queries) --- */
 @media (max-width: 992px) {
-    .container {
-        width: 95%;
-    }
+    .container { width: 95%; }
     .hero-section h1 { font-size: 2.8rem; }
     .hero-section p { font-size: 1.1rem; }
     h1 { font-size: 2.5rem; }
     h2 { font-size: 2rem; }
-
     .nav-logo { font-size: 1.3rem; margin-right: 0.5rem; }
     .header-logo-corner { height: 50px; margin-right: 1rem; }
     .nav-item { margin-left: 1rem; }
@@ -594,23 +586,7 @@ footer a:hover {
 @media (max-width: 768px) {
     .nav-logo { font-size: 1.2rem; margin-right: auto; flex-shrink: 1; min-width: 100px; }
     .header-logo-corner { display: none; }
-
-    .nav-menu {
-        display: none; 
-        position: absolute;
-        top: var(--header-height);
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-color);
-        flex-direction: column;
-        align-items: stretch; 
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding-bottom: 1rem; 
-        max-height: calc(100vh - var(--header-height)); 
-        overflow-y: auto; 
-        z-index: 999; 
-        margin-right: 0;
-    }
+    .nav-menu { display: none; position: absolute; top: var(--header-height); left: 0; width: 100%; background-color: var(--bg-color); flex-direction: column; align-items: stretch; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding-bottom: 1rem; max-height: calc(100vh - var(--header-height)); overflow-y: auto; z-index: 999; margin-right: 0; }
     .nav-menu.active { display: flex; }
     .nav-item { margin-left: 0; width: 100%; }
     .nav-link { display: block; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); text-align: left; font-size: 1rem; white-space: normal; }
@@ -628,8 +604,7 @@ footer a:hover {
     .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
-    .hero-section h1 { font-size: 2.2rem; } /* Adjusted for mobile */
+    .hero-section h1 { font-size: 2.2rem; }
     .hero-section p { font-size: 1rem; }
     .content-columns { flex-direction: column; }
     .column-text { padding: 10px; background-color: rgba(0,0,0,0.1); border-radius: var(--border-radius); }
@@ -649,7 +624,7 @@ footer a:hover {
     .bar { width: 24px; height: 2px; margin: 5px auto; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .hero-section h1 { font-size: 2rem; } /* Adjusted for very small mobile */
+    .hero-section h1 { font-size: 2rem; }
     .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
     main > .page-section { padding-top: 20px; padding-bottom: 20px; }
     .page-section h2 { font-size: 1.6rem; margin-bottom: 15px; }
