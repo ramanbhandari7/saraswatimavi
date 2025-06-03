@@ -8,7 +8,7 @@
     --text-color: #333333;
     --light-text-color: #FFFFFF;
     --bg-color: #FFFFFF;
-    --light-bg-color: #f8f9fa; /* Lighter gray than f4f4f4 */
+    --light-bg-color: #f8f9fa;
     --border-color: #dee2e6;
     --heading-font: 'Merriweather Sans', sans-serif;
     --body-font: 'Open Sans', sans-serif;
@@ -40,7 +40,7 @@ body {
     width: 90%;
     max-width: 1140px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 15px; /* Ensure container provides horizontal padding */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -92,7 +92,7 @@ img.responsive-image {
 
 .btn-primary {
     background-color: var(--secondary-color);
-    color: var(--text-color); /* Text color for primary button should contrast with yellow */
+    color: var(--text-color);
     border: 2px solid var(--secondary-color);
 }
 
@@ -136,15 +136,14 @@ header {
 }
 
 .navbar {
-    height: 80px; /* Or adjust as per your design's total header height */
+    height: 80px; /* Total header height */
 }
 
-.nav-container {
+.nav-container { /* This is the .container inside .navbar */
     display: flex;
     align-items: center; /* Vertically align all items */
-    width: 100%;
     height: 100%; /* Ensure nav-container fills navbar height */
-    padding: 0 15px; /* Re-add if removed from .container or ensure .container handles this */
+    /* padding for .nav-container is handled by the .container class itself */
 }
 
 .nav-logo { /* Text logo "श्री सरस्वती माध्यामिक विद्यालय" */
@@ -153,9 +152,10 @@ header {
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
-    /* white-space: nowrap; Removed to allow wrapping as in image */
     line-height: 1.2; /* Adjust if text wrapping causes overlap */
     margin-right: 0.75rem; /* Space between text logo and image logo */
+    flex-shrink: 1; /* Allow text logo to shrink if needed, but not too much */
+    min-width: 150px; /* Give it some minimum width */
 }
 
 .header-logo-corner { /* School emblem image */
@@ -171,15 +171,16 @@ header {
     list-style: none;
     padding: 0;
     margin: 0; /* Resetting default ul margins */
-    margin-right: auto; /* KEY: Pushes subsequent items (hamburger, flag) to the right */
+    margin-right: auto; /* KEY: Pushes subsequent items (flag, hamburger) to the right */
 }
 
 .nav-item {
     margin-left: 1.5rem; /* Spacing between nav menu items */
 }
-.nav-item:first-child {
-    margin-left: 0; /* No left margin for the first nav item if .nav-menu is directly after logo */
+.nav-item:first-child { /* Only if .nav-menu is not the first child (i.e. after logo) */
+    margin-left: 0;
 }
+
 
 .nav-link {
     font-family: var(--body-font);
@@ -190,6 +191,7 @@ header {
     padding: 0.5rem 0.2rem;
     position: relative;
     transition: color 0.3s ease;
+    white-space: nowrap; /* Prevent nav links from wrapping */
 }
 
 .nav-link::after {
@@ -217,7 +219,7 @@ header {
     font-size: 0.8em;
 }
 
-/* Dropdown Menu (styles largely unchanged from previous correction) */
+/* Dropdown Menu */
 .dropdown {
     position: relative;
 }
@@ -263,8 +265,8 @@ header {
     cursor: pointer;
     background: none;
     border: none;
-    padding: 10px; /* Make it easier to tap */
-    margin-left: 1rem; /* Space from nav-menu if flag wasn't there, or space from flag */
+    padding: 10px;
+    margin-left: 1rem; /* Space from the flag (or nav-menu if flag wasn't there) */
     flex-shrink: 0;
     z-index: 1005;
 }
@@ -280,76 +282,135 @@ header {
 }
 
 .header-flag-corner { /* Waving Nepali Flag */
-    height: 50px; /* Adjusted height, should be less than navbar height ideally */
+    height: 50px;
     width: auto;
-    margin-left: 1rem; /* Space from the element that margin-right:auto pushed it against */
+    margin-left: 1rem; /* This will be space from .nav-menu due to margin-right: auto on nav-menu */
     flex-shrink: 0; /* Prevent flag from shrinking */
 }
 
-/* --- Responsive Design for Header (Adjustments from image context) --- */
-@media (max-width: 992px) { /* Medium devices */
-    .nav-logo {
-        font-size: 1.3rem; /* Slightly smaller text */
-        margin-right: 0.5rem;
-    }
-    .header-logo-corner {
-        height: 50px; /* Slightly smaller emblem */
-        margin-right: 1rem;
-    }
-    .nav-item {
-        margin-left: 1rem; /* Less space between nav items */
-    }
-    .header-flag-corner {
-        height: 45px; /* Slightly smaller flag */
-    }
+
+/* --- Main Content Sections --- */
+.page-section {
+    padding: 60px 0;
 }
 
-@media (max-width: 768px) { /* Tablets and Mobile */
-    .nav-container {
-        /* If you want logo left, hamburger/flag right: */
-        /* justify-content: space-between; */ /* This is one way, an alternative is margin-right: auto on logo */
-    }
-    .nav-logo {
-        margin-right: auto; /* Pushes hamburger & flag to the right */
-        /* Consider further reducing font size or ensuring it fits */
-        font-size: 1.2rem;
-    }
-    .header-logo-corner {
-        display: none; /* Hide emblem on small screens to save space */
-    }
-    .nav-menu { /* This becomes the full-width dropdown */
-        display: none; /* Controlled by .active class */
-        position: absolute;
-        top: 80px; /* Below header */
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-color);
-        flex-direction: column;
-        align-items: stretch;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        padding-bottom: 1rem;
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        z-index: 999;
-        margin-right: 0; /* Reset from desktop */
-    }
-    .nav-menu.active {
-        display: flex;
-    }
-    /* Mobile nav-item, nav-link, dropdown styles from previous correction are generally fine */
-
-    .hamburger {
-        display: block; /* Show hamburger */
-        order: 2; /* If using flex order, to place it after the flag if both are at the end */
-        margin-left: 0.5rem; /* Space from the flag */
-    }
-    .header-flag-corner {
-        height: 40px;
-        order: 1; /* Flag before hamburger */
-        margin-left: 0; /* Reset, spacing will be handled by logo's margin and hamburger's margin */
-    }
-    /* Active hamburger icon styles (.bar transformations) from previous correction are fine */
+.page-section h2 {
+    text-align: center;
+    margin-bottom: 40px; 
+    position: relative;
+    padding-bottom: 15px;
 }
+.page-section h2::after { 
+    content: '';
+    position: absolute;
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--secondary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('https://images.unsplash.com/photo-1503676260728-1c65c6928240?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+    color: var(--light-text-color);
+    text-align: center;
+    position: relative;
+    padding: 120px 0; 
+    min-height: 80vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 58, 107, 0.6); 
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    color: var(--light-text-color);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-section p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hero-section .sub-address {
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+/* About Section Columns */
+.content-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+}
+.column-text, .column-image {
+    flex: 1;
+    min-width: 300px; 
+}
+.column-image img {
+    box-shadow: var(--box-shadow);
+}
+
+/* Highlights Section */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.highlight-card {
+    background-color: var(--bg-color);
+    padding: 30px 25px;
+    text-align: center;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.highlight-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+}
+
 /* Programs Section */
 #programs ul {
     list-style: none;
@@ -445,9 +506,9 @@ header {
 }
 .map-container iframe {
     display: block; 
-    width: 100%; /* Ensure iframe takes full width of container */
-    height: 450px; /* Default height, can be adjusted */
-    border: 0; /* Remove default iframe border */
+    width: 100%; 
+    height: 450px; 
+    border: 0; 
 }
 
 
@@ -475,7 +536,7 @@ footer a:hover {
 
 
 /* --- Responsive Design (Media Queries) --- */
-@media (max-width: 992px) {
+@media (max-width: 992px) { /* Medium devices ~ tablets */
     .container {
         width: 95%;
     }
@@ -485,23 +546,39 @@ footer a:hover {
     h2 { font-size: 2rem; }
 
     .nav-logo {
-        font-size: 1.3rem; /* Adjust logo size for smaller screens */
-        margin-right: 1rem; /* Ensure some space before menu/hamburger */
+        font-size: 1.3rem;
+        margin-right: 0.5rem;
     }
     .header-logo-corner {
-        height: 40px; /* Adjust corner logo size */
-        margin-left: 10px;
+        height: 50px;
+        margin-right: 1rem;
     }
-    .nav-menu {
-        margin-left: 1rem; /* Reduce margin if nav-logo is smaller */
+    .nav-item {
+        margin-left: 1rem;
+    }
+    .nav-link {
+        font-size: 0.9rem; /* Slightly smaller nav links */
+    }
+    .header-flag-corner {
+        height: 45px;
     }
 }
 
-@media (max-width: 768px) {
-    .nav-menu {
+@media (max-width: 768px) { /* Small devices ~ mobile landscape, large phones */
+    .nav-logo {
+        font-size: 1.2rem;
+        margin-right: auto; /* Pushes flag and hamburger to the right */
+        flex-shrink: 1; /* Allow it to shrink a bit more */
+        min-width: 100px; /* Or whatever fits best */
+    }
+    .header-logo-corner {
+        display: none; /* Hide school emblem image to save space */
+    }
+
+    .nav-menu { /* This becomes the full-width dropdown */
         display: none; 
         position: absolute;
-        top: 80px; 
+        top: 80px; /* Below header */
         left: 0;
         width: 100%;
         background-color: var(--bg-color);
@@ -511,9 +588,9 @@ footer a:hover {
         padding-bottom: 1rem; 
         max-height: calc(100vh - 80px); 
         overflow-y: auto; 
-        z-index: 999; /* Below header but above content */
+        z-index: 999; 
+        margin-right: 0; /* Reset desktop margin */
     }
-
     .nav-menu.active {
         display: flex; 
     }
@@ -528,6 +605,8 @@ footer a:hover {
         padding: 1rem 1.5rem; 
         border-bottom: 1px solid var(--border-color);
         text-align: left;
+        font-size: 1rem; /* Reset to base or slightly larger for touch */
+        white-space: normal; /* Allow link text to wrap if necessary */
     }
     .nav-link:hover, .nav-link.active-link {
         background-color: var(--light-bg-color);
@@ -536,64 +615,54 @@ footer a:hover {
         display: none;
     }
 
-    .dropdown {
-        width: 100%;
-    }
-    /* .dropdown-toggle::after {  FontAwesome is used, so this might not be needed if it was for a text caret
-        display: none;
-    } */
-    .nav-link i.fa-caret-down { /* Ensure caret is visible and aligned in mobile */
-        float: right;
+    .nav-link i.fa-caret-down { /* Caret in mobile dropdown */
+        float: right; /* Position caret to the right */
         transition: transform 0.3s ease;
     }
 
+    .dropdown { /* Full width for mobile */
+        width: 100%;
+    }
     .dropdown-menu {
-        position: static; 
-        display: none; 
+        position: static; /* No absolute positioning in mobile */
+        display: none; /* Controlled by JS/ .open class */
         width: 100%;
         box-shadow: none;
         border-radius: 0;
-        padding-left: 1.5rem; 
-        background-color: #fdfdfd; 
+        padding-left: 0; /* Remove desktop indent, handle via dropdown-item */
+        background-color: #fdfdfd; /* Slightly different bg for mobile dropdown */
         opacity: 1;
         visibility: visible;
         transform: none;
-        transition: none; /* Or max-height transition */
-        border-bottom: 1px solid var(--border-color); /* Add border to separate from next nav-item */
+        transition: none; 
+        border-bottom: 1px solid var(--border-color);
     }
     .dropdown-menu.open { 
         display: block;
     }
-
     .dropdown.open .nav-link i.fa-caret-down { 
         transform: rotate(180deg);
     }
     .dropdown-item {
         padding: 0.8rem 1.5rem;
-        padding-left: 2.5rem; /* Further indent dropdown items */
+        padding-left: 2.5rem; /* Indent dropdown items */
         border-bottom: 1px solid #eee;
     }
     .dropdown-item:last-child {
         border-bottom: none;
     }
 
-
     .hamburger {
-        display: block; 
-        margin-left: auto; /* Push hamburger to the far right, after flag if present */
+        display: block; /* Show hamburger */
+        order: 2; /* Flag first, then hamburger */
+        margin-left: 0.5rem; /* Space from the flag */
     }
     .header-flag-corner {
-        order: 1; /* Ensure flag is after hamburger in flex order if needed */
-        margin-left: 0.5rem;
+        height: 40px;
+        order: 1; /* Flag appears before hamburger */
+        margin-left: 0; /* Margin handled by .nav-logo's margin-right: auto */
     }
-    .nav-menu {
-       margin-left: 0; /* Reset margin for mobile menu */
-    }
-    .nav-logo {
-        margin-right: 0; /* Allow hamburger to be pushed by auto margin */
-    }
-
-
+    
     .hamburger.active .bar:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }
@@ -624,10 +693,28 @@ footer a:hover {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) { /* Extra small devices ~ portrait phones */
     html { font-size: 15px; } 
-    .nav-logo { font-size: 1.2rem; white-space: normal; max-width: calc(100% - 120px); /* Allow wrap if too long */ }
-    .header-logo-corner { display: none; /* Optionally hide corner logo on very small screens */ }
+    .nav-logo { 
+        font-size: 1.1rem; /* Further reduce if necessary */
+        min-width: 0; /* Allow full shrink */
+        max-width: calc(100% - 100px); /* Approximate width for flag + hamburger */
+        white-space: normal; /* Allow school name to wrap */
+    }
+    .header-flag-corner {
+        height: 35px;
+    }
+    .hamburger {
+        padding: 8px; /* Adjust padding if needed */
+    }
+    .bar {
+        width: 24px; /* Smaller bars */
+        height: 2px;
+        margin: 5px auto;
+    }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     .hero-section h1 { font-size: 2rem; }
     .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
 }
@@ -636,12 +723,11 @@ footer a:hover {
 :focus-visible {
   outline: 3px solid var(--secondary-color);
   outline-offset: 2px;
-  border-radius: 2px; /* Add a slight radius to the outline for better visibility on some elements */
+  border-radius: 2px;
 }
-/* Specific focus styles if needed, but the global one is a good start */
 .nav-link:focus-visible, .dropdown-item:focus-visible, .btn:focus-visible {
-    background-color: var(--light-bg-color); /* Light background on focus */
-    color: var(--primary-color); /* Ensure text contrast */
+    background-color: var(--light-bg-color);
+    color: var(--primary-color);
 }
 .hamburger:focus-visible {
     outline: 2px solid var(--primary-color);
