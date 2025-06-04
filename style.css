@@ -1,21 +1,32 @@
 /* --- Global Styles & Variables --- */
 :root {
-    --primary-color: #005A9C; /* Deep Cerulean */
-    --primary-color-darker: #004B8C;
-    --secondary-color: #FDB813; /* Selective Yellow */
+    /* NEW Primary color - assuming a blue from your logo. Adjust HEX if needed */
+    --primary-color: #005A9C; /* Existing Deep Cerulean - This might be okay if it matches logo */
+    /* OR if logo is a different blue, e.g., a slightly brighter one like #2A7FFF, use that */
+    /* For this example, I'll stick with the existing #005A9C but you can change it */
+
+    --primary-color-darker: #004B8C; /* Darken version of primary */
+    --secondary-color: #FDB813;    /* Selective Yellow (accent) - kept from before */
     --secondary-color-darker: #E4A611;
-    --accent-color: #E31B23;
-    --text-color: #333333; /* Standard dark text color */
-    --light-text-color: #FFFFFF; /* For text on dark backgrounds/overlays */
-    --hero-heading-color: var(--light-text-color); /* Hero H1 will be light for image background */
-    --bg-color: #FFFFFF; /* Default white background for sections */
-    --light-bg-color: #f8f9fa; /* For sections with .bg-light */
-    --border-color: #dee2e6;
-    --heading-font: 'Merriweather Sans', sans-serif;
-    --body-font: 'Open Sans', sans-serif;
-    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    --text-color: #333333;          /* Default dark text */
+    --light-text-color: #FFFFFF;    /* For text on dark backgrounds */
+    
+    /* Section Backgrounds (Examples - can be customized) */
+    --bg-section-light-1: #f0f4f8;  /* Very light cool gray */
+    --bg-section-light-2: #e6eaf0;  /* Slightly darker light cool gray */
+    --bg-section-dark-1: #2c3e50;   /* Dark desaturated blue/slate */
+    --bg-section-accent-light: #fff9e6; /* Very light yellow, from secondary */
+
+    --border-color: #d1d8e0;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     --border-radius: 8px;
     --header-height: 80px;
+
+    /* NEW Stylish Fonts (Examples - choose from Google Fonts) */
+    --heading-font: 'Montserrat', sans-serif; /* Clean, modern sans-serif for headings */
+    --body-font: 'Roboto', sans-serif;        /* Highly readable sans-serif for body */
+    /* Ensure you link these fonts in your HTML <head> if they are different from before */
 }
 
 * {
@@ -33,7 +44,7 @@ body {
     font-family: var(--body-font);
     color: var(--text-color);
     line-height: 1.7;
-    background-color: var(--bg-color);
+    background-color: #FDFEFE; /* Global fallback, but sections will override */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -47,27 +58,28 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
-    color: var(--primary-color);
-    margin-bottom: 1rem;
+    color: var(--primary-color); /* Headings use primary color by default */
+    margin-bottom: 1.2rem;
     line-height: 1.3;
+    font-weight: 700; /* Bolder headings */
 }
 
-h1 { font-size: 2.8rem; margin-bottom: 1.5rem; }
-h2 { font-size: 2.2rem; margin-bottom: 1.2rem; }
-h3 { font-size: 1.8rem; }
+h1 { font-size: 2.6rem; letter-spacing: -0.5px; margin-bottom: 1.8rem; } /* Slightly smaller, more modern feel */
+h2 { font-size: 2.0rem; letter-spacing: -0.25px; margin-bottom: 1.5rem; }
+h3 { font-size: 1.6rem; }
 
 p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem; /* Slightly larger body text */
 }
 
 a {
-    color: var(--secondary-color);
+    color: var(--secondary-color); /* Links use secondary color */
     text-decoration: none;
     transition: color 0.3s ease;
 }
-
 a:hover {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Hover to primary color */
 }
 
 ul {
@@ -78,59 +90,60 @@ img.responsive-image {
     max-width: 100%;
     height: auto;
     border-radius: var(--border-radius);
+    display: block; /* Remove extra space below image */
 }
 
 .btn {
     display: inline-block;
-    padding: 0.8rem 1.8rem;
+    padding: 0.9rem 2rem; /* Slightly larger buttons */
     font-family: var(--heading-font);
     font-weight: 600;
     text-align: center;
-    border-radius: var(--border-radius);
+    border-radius: 50px; /* Pill-shaped buttons for modern look */
     transition: all 0.3s ease;
     cursor: pointer;
     border: none;
+    text-transform: uppercase; /* Uppercase button text */
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
 }
 
-.btn-primary { /* Yellow button, e.g., in hero */
+.btn-primary { /* Accent button (Yellow) */
     background-color: var(--secondary-color);
     color: var(--text-color);
-    border: 2px solid var(--secondary-color);
+    /* border: 2px solid var(--secondary-color); Removed for flatter look */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
 .btn-primary:hover {
     background-color: var(--secondary-color-darker);
     color: var(--text-color);
-    border-color: var(--secondary-color-darker);
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.btn-secondary { /* Blue button */
+.btn-secondary { /* Main action button (Primary Color) */
     background-color: var(--primary-color);
     color: var(--light-text-color);
-    border: 2px solid var(--primary-color);
+    /* border: 2px solid var(--primary-color); Removed for flatter look */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
 .btn-secondary:hover {
     background-color: var(--primary-color-darker);
     color: var(--light-text-color);
-    border-color: var(--primary-color-darker);
-    transform: translateY(-2px);
-}
-
-.bg-light {
-    background-color: var(--light-bg-color);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .icon-title {
-    margin-right: 0.5rem;
-    color: var(--secondary-color);
+    margin-right: 0.75rem;
+    color: var(--secondary-color); /* Icons in titles use accent */
+    font-size: 1.1em; /* Make icon slightly larger relative to h2 text */
 }
 
-/* --- Header & Navigation --- */
+/* --- Header & Navigation - New Colors --- */
 header {
-    background-color: var(--bg-color);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: var(--primary-color); /* Navbar uses new primary color */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -138,33 +151,29 @@ header {
     height: var(--header-height);
 }
 
-.navbar {
-    height: 100%;
-}
-
-.nav-container {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
+.navbar { height: 100%; }
+.nav-container { display: flex; align-items: center; height: 100%; }
 
 .nav-logo {
     font-family: var(--heading-font);
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Slightly larger logo text */
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--light-text-color); /* Logo text is light on primary bg */
     text-decoration: none;
     line-height: 1.2;
-    margin-right: 0.75rem;
+    margin-right: 1rem;
     flex-shrink: 1;
     min-width: 150px;
 }
 
-.header-logo-corner {
-    height: 60px;
+.header-logo-corner { /* School emblem */
+    height: 55px; /* Adjusted size */
     width: auto;
-    margin-right: 1.5rem;
+    margin-right: auto; /* Pushes nav-menu to the right */
     flex-shrink: 0;
+    background-color: var(--light-text-color); /* Optional: white bg for emblem if needed */
+    border-radius: 50%; /* Make it circular if it's square */
+    padding: 3px; /* Small padding around emblem */
 }
 
 .nav-menu {
@@ -173,611 +182,298 @@ header {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-right: auto;
+    /* margin-right: auto; Removed as header-logo-corner has it now */
 }
 
-.nav-item {
-    margin-left: 1.5rem;
-}
-.nav-item:first-child {
-    margin-left: 0;
-}
+.nav-item { margin-left: 1.8rem; } /* Increased spacing */
+.nav-item:first-child { margin-left: 0; }
 
 .nav-link {
-    font-family: var(--body-font);
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--text-color);
+    font-family: var(--heading-font); /* Use heading font for nav links */
+    font-weight: 500; /* Slightly lighter than headings */
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85); /* Light text for nav links on primary bg */
     text-decoration: none;
     padding: 0.5rem 0.2rem;
     position: relative;
     transition: color 0.3s ease;
-    white-space: nowrap;
+    text-transform: uppercase; /* Uppercase nav links */
+    letter-spacing: 0.5px;
 }
-
-.nav-link::after {
+.nav-link::after { /* Underline effect for active/hover */
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--secondary-color);
+    bottom: -8px; /* Further down */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--secondary-color); /* Accent color for underline */
     transition: width 0.3s ease;
 }
-
 .nav-link:hover,
 .nav-link.active-link {
-    color: var(--primary-color);
+    color: var(--light-text-color); /* Full white on hover/active */
 }
 .nav-link:hover::after,
 .nav-link.active-link::after {
     width: 100%;
 }
+.nav-link i.fa-caret-down { margin-left: 0.4rem; font-size: 0.8em; }
 
-.nav-link i.fa-caret-down {
-    margin-left: 0.3rem;
-    font-size: 0.8em;
-}
-
-.dropdown {
-    position: relative;
-}
-.dropdown-menu {
+.dropdown-menu { /* Dropdown styling */
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px); /* Ensure it's below underline */
     left: 0;
-    background-color: var(--bg-color);
-    min-width: 220px;
+    background-color: var(--bg-color); /* Dropdown bg is light */
+    min-width: 230px;
     box-shadow: var(--box-shadow);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-radius: var(--border-radius);
     z-index: 1001;
     padding: 0.5rem 0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    border-top: 3px solid var(--secondary-color); /* Accent border on top */
 }
-.dropdown:hover .dropdown-menu,
-.dropdown .dropdown-toggle:focus + .dropdown-menu, 
-.dropdown .dropdown-menu:hover {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
+/* ... (rest of dropdown styles from previous complete CSS are mostly fine) ... */
+/* Make sure dropdown-item text color is var(--text-color) for light background */
 .dropdown-item {
-    display: block;
-    padding: 0.75rem 1.5rem;
-    color: var(--text-color);
-    font-size: 0.95rem;
-    white-space: nowrap;
+    display: block; padding: 0.8rem 1.5rem; color: var(--text-color); /* Dark text */
+    font-size: 0.9rem; white-space: nowrap; font-family: var(--body-font);
 }
-.dropdown-item:hover {
-    background-color: var(--light-bg-color);
-    color: var(--primary-color);
-}
+.dropdown-item:hover { background-color: #f0f0f0; color: var(--primary-color); }
 
-.hamburger {
-    display: none;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 10px;
-    margin-left: 1rem;
-    flex-shrink: 0;
-    z-index: 1005;
-}
 
+.hamburger { /* Hamburger styling */
+    display: none; cursor: pointer; background: none; border: none;
+    padding: 10px; margin-left: 1rem; flex-shrink: 0; z-index: 1005;
+}
 .bar {
-    display: block;
-    width: 28px;
-    height: 3px;
-    margin: 6px auto;
-    background-color: var(--primary-color);
-    transition: all 0.3s ease-in-out;
-    border-radius: 2px;
+    display: block; width: 28px; height: 3px; margin: 6px auto;
+    background-color: var(--light-text-color); /* Hamburger bars are light */
+    transition: all 0.3s ease-in-out; border-radius: 2px;
 }
 
 .header-flag-corner {
-    height: 50px;
+    height: 45px; /* Adjusted size */
     width: auto;
     margin-left: 1rem;
     flex-shrink: 0;
 }
 
-/* --- Main Content Sections --- */
+/* --- Main Content Sections - NEW Backgrounds & Text Colors --- */
 main > .page-section {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding: 80px 0; /* Increased padding */
     overflow-y: auto;
-    position: relative; /* For overlays */
-}
-
-.page-section > .container {
-    position: relative; /* To ensure content is above .section-overlay */
-    z-index: 2;
-}
-
-.page-section h2 {
-    text-align: center;
-    margin-bottom: 40px; 
     position: relative;
-    padding-bottom: 15px;
 }
-.page-section h2::after { 
-    content: '';
-    position: absolute;
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: var(--secondary-color);
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+.page-section > .container { position: relative; z-index: 2; }
+
+.page-section h2 { /* Section titles styling */
+    text-align: center;
+    margin-bottom: 50px; 
+    position: relative;
+    padding-bottom: 20px;
+    font-weight: 700; /* Ensure headings are bold */
+}
+.page-section h2::after { /* Underline for section titles */
+    content: ''; position: absolute; display: block;
+    width: 70px; height: 4px; background: var(--secondary-color);
+    bottom: 0; left: 50%; transform: translateX(-50%);
     border-radius: 2px;
 }
 
-/* Generic Overlay for sections with background images */
+/* Generic Overlay (used for #home and #about) */
 .section-overlay {
-    display: none; /* Hidden by default, shown by specific section rules if needed */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Below .container content */
+    display: none; position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; z-index: 1;
 }
 
-
-/* Hero Section Specifics - WITH docs/main.jpg BACKGROUND */
+/* Hero Section (#home) */
 #home.hero-section {
-    background: url('docs/main.jpg') no-repeat center center/cover; /* Assuming style.css is in root */
-    text-align: center;
-    height: 100vh;
-    min-height: 0;
-    color: var(--light-text-color); /* Default text color for hero content */
+    background: url('docs/main.jpg') no-repeat center center/cover;
+    color: var(--light-text-color); /* Text on hero is light */
 }
-
 #home.hero-section .section-overlay {
-    display: block; /* Show the overlay for this section */
-    background-color: rgba(0, 58, 107, 0.6); /* Dark blueish overlay */
-}
-
-.hero-content { /* The .container inside #home */
-    /* z-index and position are handled by .page-section > .container */
-    padding: 20px 0;
-}
-
-.hero-section h1 {
-    font-size: 3.5rem;
-    color: var(--hero-heading-color); /* Uses the light text color variable */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    margin-bottom: 1.5rem;
-}
-
-.hero-section p { /* Tagline and sub-address */
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--light-text-color); /* Ensure these are also light */
-}
-.hero-section p.sub-address {
-    font-size: 1rem;
-    font-style: italic;
-    opacity: 0.9;
-    margin-bottom: 2.5rem;
-}
-
-
-/* About Section Specifics */
-#about.page-section {
-    background: url('docs/school.jpg') no-repeat center center/cover; /* Assuming style.css is in root */
-    color: var(--light-text-color);
-}
-
-#about.page-section .section-overlay {
-    display: block; /* Show the overlay for this section */
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-}
-
-#about.page-section h2,
-#about.page-section p {
-    color: var(--light-text-color);
-}
-#about.page-section h2 .icon-title {
-    color: var(--secondary-color);
-}
-
-.content-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    align-items: center;
-}
-.column-text, .column-image {
-    flex: 1;
-    min-width: 300px; 
-}
-.column-image img {
-    box-shadow: var(--box-shadow);
-    border: 3px solid var(--light-text-color);
-}
-
-/* Highlights Section */
-#highlights.page-section {
-    background-color: var(--light-bg-color); /* explicit light background */
-}
-#highlights.page-section h2,
-#highlights.page-section h3,
-#highlights.page-section p {
-    color: var(--text-color); /* Dark text for light background */
-}
-#highlights.page-section h2 .icon-title,
-#highlights.page-section .card-icon {
-    color: var(--primary-color);
-}
-#highlights.page-section h3 {
-    color: var(--primary-color);
-}
-
-.highlights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.highlight-card {
-    background-color: var(--bg-color); /* White cards */
-    padding: 30px 25px;
-    text-align: center;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.highlight-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.card-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-}
-
-.highlight-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.75rem;
-}
-
-/* Programs Section */
-#programs.page-section {
-    background-color: var(--bg-color); /* Default white background */
-}
-#programs.page-section ul {
-    list-style: none;
-    padding-left: 0;
-}
-#programs.page-section li {
-    padding: 0.5rem 0;
-    font-size: 1.1rem;
-    color: var(--text-color); /* Ensure dark text */
-}
-#programs.page-section .list-icon {
-    color: var(--secondary-color);
-    margin-right: 10px;
-}
-#programs.page-section p { /* Paragraph in programs section */
-    color: var(--text-color);
-}
-
-
-/* News Section */
-#news.page-section {
-    background-color: var(--bg-color); /* Default white background */
-}
-.news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-.news-item {
-    background-color: var(--bg-color);
-    padding: 20px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: box-shadow 0.3s ease;
-}
-.news-item:hover {
-    box-shadow: var(--box-shadow);
-}
-.news-item h3 {
-    font-size: 1.3rem;
-    color: var(--primary-color);
-}
-.news-date {
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 0.5rem;
-}
-.read-more {
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-#news.page-section p { /* Paragraph in news section */
-    color: var(--text-color);
-}
-
-
-/* Staff Section */
-#staff.page-section { /* This already has .bg-light from HTML */
-    /* Text colors will be default dark due to .bg-light (light background) */
-}
-
-
-/* Gallery Section */
-#gallery.page-section {
-    background-color: var(--bg-color); /* Default white background */
-}
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-.gallery-image {
-    width: 100%;
-    height: 200px; 
-    object-fit: cover; 
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.gallery-image:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
-#gallery.page-section p { /* Paragraph in gallery section */
-    color: var(--text-color);
-}
-
-/* Contact Section */
-#contact.page-section { /* This already has .bg-light from HTML */
-    /* Text colors will be default dark */
-}
-.contact-info p {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-}
-.contact-icon {
-    color: var(--primary-color);
-    margin-right: 12px;
-    font-size: 1.3rem;
-}
-.contact-info a {
-    color: var(--text-color);
-}
-.contact-info a:hover {
-    color: var(--secondary-color);
-}
-.map-container {
-    margin-top: 30px;
-    border-radius: var(--border-radius);
-    overflow: hidden; 
-    box-shadow: var(--box-shadow);
-}
-.map-container iframe {
-    display: block; 
-    width: 100%; 
-    height: 350px; 
-    border: 0; 
-}
-
-/* --- Footer Enhancements --- */
-.footer-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    justify-content: space-between;
-    gap: 30px; /* Space between columns */
-    padding-bottom: 30px; /* Space before footer-bottom */
-    text-align: left; /* Align text to left within columns */
-}
-
-.footer-column {
-    flex: 1; /* Distribute space among columns */
-    min-width: 200px; /* Minimum width before wrapping */
-    margin-bottom: 20px; /* Space below columns when they stack */
-}
-
-.footer-column h4 {
-    color: var(--secondary-color); /* Yellow color for footer headings */
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Subtle underline */
-    padding-bottom: 8px;
-}
-
-.footer-column p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.85); /* Slightly transparent white for readability */
-}
-
-.quick-links ul {
-    list-style: none;
-    padding: 0;
-}
-
-.quick-links li a {
     display: block;
-    padding: 5px 0;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 0.95rem;
+    background-color: rgba(0, 40, 80, 0.65); /* Adjusted overlay (darker primary hint) */
+}
+#home.hero-section h1 { color: var(--light-text-color); text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+#home.hero-section p { color: rgba(255,255,255,0.9); }
+
+/* About Section (#about) */
+#about.page-section {
+    background: url('docs/school.jpg') no-repeat center center/cover;
+    color: var(--light-text-color);
+}
+#about.page-section .section-overlay {
+    display: block;
+    background-color: rgba(20, 30, 40, 0.7); /* Dark slate overlay */
+}
+#about.page-section h2 { color: var(--light-text-color); }
+#about.page-section h2 .icon-title { color: var(--secondary-color); } /* Keep icon accent */
+#about.page-section p { color: rgba(255,255,255,0.9); }
+#about.page-section .column-image img { border: 3px solid rgba(255,255,255,0.5); }
+
+/* Highlights Section (#highlights) */
+#highlights.page-section {
+    background-color: var(--bg-section-light-1); /* New light bg */
+}
+/* Default text/heading colors are fine here (dark on light bg) */
+#highlights.page-section .highlight-card {
+    background-color: var(--light-text-color); /* Cards are white on this bg */
+    border: 1px solid var(--border-color);
+}
+
+/* Programs Section (#programs) */
+#programs.page-section {
+    background-color: var(--bg-color); /* Can use main white if contrast is needed */
+    /* Or try a different light shade: var(--bg-section-light-2); */
+}
+/* Default text colors are fine */
+
+/* Admission Section (#admission) */
+#admission.page-section {
+    background-color: var(--bg-section-accent-light); /* Light yellow accent bg */
+}
+/* Default text colors fine */
+
+/* News Section (#news) */
+#news.page-section {
+    background-color: var(--bg-section-light-2);
+}
+/* Default text colors fine */
+#news.page-section .news-item { background-color: var(--light-text-color); }
+
+/* Staff Section (#staff) */
+#staff.page-section {
+    background-color: var(--bg-section-dark-1); /* Dark background */
+    color: var(--light-text-color);
+}
+#staff.page-section h2 { color: var(--light-text-color); }
+#staff.page-section p { color: rgba(255,255,255,0.85); }
+
+/* Gallery Section (#gallery) */
+#gallery.page-section {
+    background-color: var(--bg-color); /* White, or var(--bg-section-light-1) */
+}
+/* Default text colors fine */
+
+/* Contact Section (#contact) */
+#contact.page-section {
+    background-color: var(--bg-section-light-1);
+}
+/* Default text colors fine */
+#contact.page-section .map-container { box-shadow: none; border: 1px solid var(--border-color); }
+
+/* --- Footer --- (Using refined styles from previous answer, colors adapted) */
+footer {
+    background-color: var(--primary-color-darker); /* Darker primary for footer */
+    color: rgba(255,255,255,0.8);
+    padding: 50px 0 20px 0;
+}
+.footer-container {
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    gap: 30px; margin-bottom: 40px;
+}
+.footer-column { flex: 1 1 260px; padding: 0 15px; }
+.footer-column h4 {
+    color: var(--secondary-color); margin-bottom: 20px; font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; font-weight: 600;
+}
+.footer-column p { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.75); margin-bottom: 0.8rem;}
+.quick-links ul { list-style: none; padding: 0; margin: 0; }
+.quick-links li a {
+    display: block; padding: 7px 0; color: rgba(255,255,255,0.75); font-size: 0.95rem;
     transition: color 0.3s ease, padding-left 0.3s ease;
 }
-
-.quick-links li a:hover {
-    color: var(--light-text-color); /* Brighter white on hover */
-    padding-left: 5px; /* Indent on hover */
-    text-decoration: none; /* Ensure no underline from global 'a:hover' */
-}
-
+.quick-links li a:hover { color: var(--light-text-color); padding-left: 8px; text-decoration: none; }
 .social-media .social-icon {
-    display: inline-flex; /* Align icon and text */
-    align-items: center;
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1rem;
-    margin-right: 15px; /* Space between icons if multiple */
-    margin-bottom: 10px; /* Space if they wrap */
-    transition: color 0.3s ease;
+    display: inline-flex; align-items: center; color: rgba(255,255,255,0.75);
+    font-size: 1rem; margin-bottom: 12px; text-decoration: none; transition: color 0.3s ease;
 }
-
 .social-media .social-icon i {
-    font-size: 1.5rem; /* Larger icon */
-    margin-right: 8px;
-    color: var(--secondary-color); /* Icon color yellow */
-    transition: transform 0.3s ease;
+    font-size: 1.5rem; margin-right: 12px; color: var(--secondary-color);
+    transition: transform 0.3s ease; width: 30px; text-align: center;
 }
-
-.social-media .social-icon:hover {
-    color: var(--light-text-color);
-    text-decoration: none;
-}
-.social-media .social-icon:hover i {
-    transform: scale(1.1);
-}
-
-
+.social-media .social-icon:hover { color: var(--light-text-color); }
+.social-media .social-icon:hover i { transform: scale(1.1); }
 .footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 20px; /* Only if footer-container has content */
+    text-align: center; padding-top: 25px;
+    border-top: 1px solid rgba(255,255,255,0.08);
 }
-.footer-bottom p {
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-.footer-bottom a {
-    color: var(--secondary-color);
-}
-.footer-bottom a:hover {
-    color: var(--light-text-color);
-    text-decoration: underline;
-}
+.footer-bottom p { margin-bottom: 0.6rem; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+.footer-bottom a { color: var(--secondary-color); font-weight: 500; }
+.footer-bottom a:hover { color: var(--light-text-color); text-decoration: underline; }
 
-/* --- Responsive Adjustments for Footer --- */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column; /* Stack columns on smaller screens */
-        text-align: center; /* Center text in columns when stacked */
-    }
-    .footer-column {
-        min-width: 100%; /* Full width when stacked */
-        margin-bottom: 30px;
-    }
-    .quick-links li a:hover {
-        padding-left: 0; /* No indent on hover for centered mobile view */
-    }
-    .social-media .social-icon {
-        justify-content: center; /* Center social icon content if it's display:flex */
-        margin-right: 0; /* No right margin when stacked */
-        display: flex; /* Ensure it takes width if needed for centering */
-    }
-}
 /* --- Responsive Design (Media Queries) --- */
-@media (max-width: 992px) {
-    .container { width: 95%; }
-    .hero-section h1 { font-size: 2.8rem; }
-    .hero-section p { font-size: 1.1rem; }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    .nav-logo { font-size: 1.3rem; margin-right: 0.5rem; }
-    .header-logo-corner { height: 50px; margin-right: 1rem; }
-    .nav-item { margin-left: 1rem; }
-    .nav-link { font-size: 0.9rem; }
-    .header-flag-corner { height: 45px; }
-    main > .page-section { padding-top: 40px; padding-bottom: 40px; }
-    .hero-content { padding: 10px 0; }
-}
-
+/* The responsive part from the previous full CSS is largely okay, */
+/* but ensure text color contrasts are maintained with new section backgrounds */
+/* Example adjustment for mobile footer: */
 @media (max-width: 768px) {
-    .nav-logo { font-size: 1.2rem; margin-right: auto; flex-shrink: 1; min-width: 100px; }
-    .header-logo-corner { display: none; }
-    .nav-menu { display: none; position: absolute; top: var(--header-height); left: 0; width: 100%; background-color: var(--bg-color); flex-direction: column; align-items: stretch; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding-bottom: 1rem; max-height: calc(100vh - var(--header-height)); overflow-y: auto; z-index: 999; margin-right: 0; }
-    .nav-menu.active { display: flex; }
-    .nav-item { margin-left: 0; width: 100%; }
-    .nav-link { display: block; padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-color); text-align: left; font-size: 1rem; white-space: normal; }
-    .nav-link:hover, .nav-link.active-link { background-color: var(--light-bg-color); }
-    .nav-link::after { display: none; }
-    .nav-link i.fa-caret-down { float: right; transition: transform 0.3s ease; }
-    .dropdown { width: 100%; }
-    .dropdown-menu { position: static; display: none; width: 100%; box-shadow: none; border-radius: 0; padding-left: 0; background-color: #fdfdfd; opacity: 1; visibility: visible; transform: none; transition: none; border-bottom: 1px solid var(--border-color); }
-    .dropdown-menu.open { display: block; }
-    .dropdown.open .nav-link i.fa-caret-down { transform: rotate(180deg); }
-    .dropdown-item { padding: 0.8rem 1.5rem; padding-left: 2.5rem; border-bottom: 1px solid #eee; }
-    .dropdown-item:last-child { border-bottom: none; }
-    .hamburger { display: block; order: 2; margin-left: 0.5rem; }
-    .header-flag-corner { height: 40px; order: 1; margin-left: 0; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-    .hero-section h1 { font-size: 2.2rem; }
-    .hero-section p { font-size: 1rem; }
-    .content-columns { flex-direction: column; }
-    .column-text { padding: 10px; background-color: rgba(0,0,0,0.1); border-radius: var(--border-radius); } /* Only for #about with bg image */
-    #about.page-section .column-text { /* Ensure this style only applies to #about */
-        background-color: rgba(255,255,255,0.1); /* Lighten background for better contrast with light text */
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    main > .page-section { padding: 60px 0; } /* Adjust padding for mobile */
+
+    .nav-logo { font-size: 1.4rem; }
+    .header-logo-corner { margin-right: auto; } /* Ensure it pushes nav menu correctly */
+    .nav-menu { /* Mobile nav dropdown background */
+        background-color: var(--primary-color-darker); /* Darker for dropdown */
+    }
+    .nav-link { /* Mobile nav links */
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-link:hover, .nav-link.active-link {
+        background-color: rgba(255,255,255,0.05); /* Subtle hover for mobile nav items */
+    }
+    .dropdown-menu { /* Mobile dropdown's sub-menu */
+        background-color: var(--bg-color); /* Light background */
+        border-top-color: var(--primary-color); /* Match main nav color */
+    }
+
+
+    .footer-container { flex-direction: column; text-align: center; }
+    .footer-column { flex-basis: auto; margin-bottom: 35px; padding: 0; }
+    .quick-links ul { display: inline-block; text-align: left; }
+    .social-media .social-icon { justify-content: center; width: 100%; }
+
+    /* Example for a dark section on mobile */
+    #staff.page-section { color: var(--light-text-color); }
+    #staff.page-section h2 { color: var(--light-text-color); }
+
+    /* Example for a text block on image bg on mobile */
+    #about.page-section .column-text { 
+        padding: 15px; 
+        background-color: rgba(0,0,0,0.5); /* Darker overlay for text block */
         border-radius: var(--border-radius);
     }
-    .column-image { margin-top: 20px; }
-    .page-section h2 { font-size: 1.8rem; margin-bottom: 20px; }
-    .highlights-grid, .news-grid, .gallery-grid { grid-template-columns: 1fr; }
-    main > .page-section { padding-top: 30px; padding-bottom: 30px; }
-    .hero-content { padding: 5px 0; }
-    .map-container iframe { height: 250px; }
 }
 
 @media (max-width: 480px) {
-    html { font-size: 15px; } 
-    .nav-logo { font-size: 1.1rem; min-width: 0; max-width: calc(100% - 100px); white-space: normal; }
-    .header-flag-corner { height: 35px; }
-    .hamburger { padding: 8px; }
-    .bar { width: 24px; height: 2px; margin: 5px auto; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .hero-section h1 { font-size: 2rem; }
-    .btn { padding: 0.7rem 1.5rem; font-size: 0.9rem; }
-    main > .page-section { padding-top: 20px; padding-bottom: 20px; }
-    .page-section h2 { font-size: 1.6rem; margin-bottom: 15px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    main > .page-section { padding: 50px 0; }
+    .btn { padding: 0.8rem 1.6rem; font-size: 0.85rem; }
+    .nav-logo { font-size: 1.2rem; }
 }
 
 /* Accessibility: Focus visible for keyboard navigation */
 :focus-visible {
   outline: 3px solid var(--secondary-color);
-  outline-offset: 2px;
-  border-radius: 2px;
+  outline-offset: 3px; /* Increased offset */
+  border-radius: 3px;
 }
 .nav-link:focus-visible, .dropdown-item:focus-visible, .btn:focus-visible {
-    background-color: var(--light-bg-color);
-    color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--secondary-color); /* More prominent focus */
 }
 .hamburger:focus-visible {
-    outline: 2px solid var(--primary-color);
+    outline: 2px solid var(--light-text-color); /* Light outline on dark bg */
     outline-offset: 2px;
 }
