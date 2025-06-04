@@ -1,32 +1,28 @@
 /* --- Global Styles & Variables --- */
 :root {
-    /* NEW Primary color - assuming a blue from your logo. Adjust HEX if needed */
-    --primary-color: #005A9C; /* Existing Deep Cerulean - This might be okay if it matches logo */
-    /* OR if logo is a different blue, e.g., a slightly brighter one like #2A7FFF, use that */
-    /* For this example, I'll stick with the existing #005A9C but you can change it */
-
-    --primary-color-darker: #004B8C; /* Darken version of primary */
-    --secondary-color: #FDB813;    /* Selective Yellow (accent) - kept from before */
+    --primary-color: #1E5088;       /* Sampled from your header image */
+    --primary-color-darker: #153A64; 
+    --secondary-color: #FDB813;    
     --secondary-color-darker: #E4A611;
 
-    --text-color: #333333;          /* Default dark text */
-    --light-text-color: #FFFFFF;    /* For text on dark backgrounds */
+    --text-color: #34495e;          
+    --light-text-color: #f8f9fa;    
     
-    /* Section Backgrounds (Examples - can be customized) */
-    --bg-section-light-1: #f0f4f8;  /* Very light cool gray */
-    --bg-section-light-2: #e6eaf0;  /* Slightly darker light cool gray */
-    --bg-section-dark-1: #2c3e50;   /* Dark desaturated blue/slate */
-    --bg-section-accent-light: #fff9e6; /* Very light yellow, from secondary */
+    /* Section Backgrounds */
+    --bg-section-light-1: #f4f7f9;  
+    --bg-section-light-2: #e9edf0;  
+    --bg-section-dark-1: #2c3e50;   /* Used for #staff */
+    --bg-section-accent-light: #fff8e1; /* Used for #admission */
+    --bg-gallery: var(--bg-section-light-2); /* Gallery background - light gray */
+
 
     --border-color: #d1d8e0;
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
-    --header-height: 80px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    --border-radius: 10px; 
+    --header-height: 75px; 
 
-    /* NEW Stylish Fonts (Examples - choose from Google Fonts) */
-    --heading-font: 'Montserrat', sans-serif; /* Clean, modern sans-serif for headings */
-    --body-font: 'Roboto', sans-serif;        /* Highly readable sans-serif for body */
-    /* Ensure you link these fonts in your HTML <head> if they are different from before */
+    --heading-font: 'Montserrat', sans-serif; 
+    --body-font: 'Roboto', sans-serif;        
 }
 
 * {
@@ -43,8 +39,8 @@ html {
 body {
     font-family: var(--body-font);
     color: var(--text-color);
-    line-height: 1.7;
-    background-color: #FDFEFE; /* Global fallback, but sections will override */
+    line-height: 1.75; 
+    background-color: #fcfdff; 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -58,28 +54,28 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--heading-font);
-    color: var(--primary-color); /* Headings use primary color by default */
+    color: var(--primary-color); 
     margin-bottom: 1.2rem;
     line-height: 1.3;
-    font-weight: 700; /* Bolder headings */
+    font-weight: 600; 
 }
 
-h1 { font-size: 2.6rem; letter-spacing: -0.5px; margin-bottom: 1.8rem; } /* Slightly smaller, more modern feel */
-h2 { font-size: 2.0rem; letter-spacing: -0.25px; margin-bottom: 1.5rem; }
-h3 { font-size: 1.6rem; }
+h1 { font-size: 2.5rem; letter-spacing: -0.5px; margin-bottom: 1.8rem; font-weight: 700;} 
+h2 { font-size: 1.9rem; letter-spacing: -0.25px; margin-bottom: 1.5rem; font-weight: 700;}
+h3 { font-size: 1.5rem; font-weight: 600;}
 
 p {
     margin-bottom: 1.2rem;
-    font-size: 1.05rem; /* Slightly larger body text */
+    font-size: 1rem; 
 }
 
 a {
-    color: var(--secondary-color); /* Links use secondary color */
+    color: var(--secondary-color); 
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease-in-out;
 }
 a:hover {
-    color: var(--primary-color); /* Hover to primary color */
+    color: var(--primary-color); 
 }
 
 ul {
@@ -90,60 +86,57 @@ img.responsive-image {
     max-width: 100%;
     height: auto;
     border-radius: var(--border-radius);
-    display: block; /* Remove extra space below image */
+    display: block; 
 }
 
 .btn {
     display: inline-block;
-    padding: 0.9rem 2rem; /* Slightly larger buttons */
+    padding: 0.8rem 1.8rem; 
     font-family: var(--heading-font);
-    font-weight: 600;
+    font-weight: 500; 
     text-align: center;
-    border-radius: 50px; /* Pill-shaped buttons for modern look */
-    transition: all 0.3s ease;
+    border-radius: 25px; 
+    transition: all 0.25s ease-in-out;
     cursor: pointer;
     border: none;
-    text-transform: uppercase; /* Uppercase button text */
-    letter-spacing: 0.5px;
-    font-size: 0.9rem;
+    text-transform: uppercase; 
+    letter-spacing: 0.8px; 
+    font-size: 0.85rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-.btn-primary { /* Accent button (Yellow) */
+.btn-primary { 
     background-color: var(--secondary-color);
-    color: var(--text-color);
-    /* border: 2px solid var(--secondary-color); Removed for flatter look */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: var(--primary-color); 
 }
 .btn-primary:hover {
     background-color: var(--secondary-color-darker);
-    color: var(--text-color);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    color: var(--primary-color-darker);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.12);
 }
 
-.btn-secondary { /* Main action button (Primary Color) */
+.btn-secondary { 
     background-color: var(--primary-color);
     color: var(--light-text-color);
-    /* border: 2px solid var(--primary-color); Removed for flatter look */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 .btn-secondary:hover {
     background-color: var(--primary-color-darker);
     color: var(--light-text-color);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.12);
 }
 
 .icon-title {
-    margin-right: 0.75rem;
-    color: var(--secondary-color); /* Icons in titles use accent */
-    font-size: 1.1em; /* Make icon slightly larger relative to h2 text */
+    margin-right: 0.85rem; 
+    color: var(--secondary-color); 
+    font-size: 1.05em; 
 }
 
-/* --- Header & Navigation - New Colors --- */
+/* --- Header & Navigation --- */
 header {
-    background-color: var(--primary-color); /* Navbar uses new primary color */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    background-color: var(--primary-color); 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -156,9 +149,9 @@ header {
 
 .nav-logo {
     font-family: var(--heading-font);
-    font-size: 1.6rem; /* Slightly larger logo text */
-    font-weight: 700;
-    color: var(--light-text-color); /* Logo text is light on primary bg */
+    font-size: 1.5rem; 
+    font-weight: 600; 
+    color: var(--light-text-color); 
     text-decoration: none;
     line-height: 1.2;
     margin-right: 1rem;
@@ -166,14 +159,15 @@ header {
     min-width: 150px;
 }
 
-.header-logo-corner { /* School emblem */
-    height: 55px; /* Adjusted size */
-    width: auto;
-    margin-right: auto; /* Pushes nav-menu to the right */
+.header-logo-corner { 
+    height: 50px; 
+    width: 50px; 
+    margin-right: auto; 
     flex-shrink: 0;
-    background-color: var(--light-text-color); /* Optional: white bg for emblem if needed */
-    border-radius: 50%; /* Make it circular if it's square */
-    padding: 3px; /* Small padding around emblem */
+    background-color: var(--light-text-color); 
+    border-radius: 50%; 
+    padding: 4px; 
+    object-fit: contain; 
 }
 
 .nav-menu {
@@ -182,115 +176,93 @@ header {
     list-style: none;
     padding: 0;
     margin: 0;
-    /* margin-right: auto; Removed as header-logo-corner has it now */
 }
 
-.nav-item { margin-left: 1.8rem; } /* Increased spacing */
+.nav-item { margin-left: 1.6rem; } 
 .nav-item:first-child { margin-left: 0; }
 
 .nav-link {
-    font-family: var(--heading-font); /* Use heading font for nav links */
-    font-weight: 500; /* Slightly lighter than headings */
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.85); /* Light text for nav links on primary bg */
+    font-family: var(--heading-font); 
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    color: rgba(255, 255, 255, 0.8); 
     text-decoration: none;
-    padding: 0.5rem 0.2rem;
+    padding: 0.4rem 0.1rem; 
     position: relative;
-    transition: color 0.3s ease;
-    text-transform: uppercase; /* Uppercase nav links */
-    letter-spacing: 0.5px;
+    transition: color 0.2s ease-in-out;
+    text-transform: uppercase; 
+    letter-spacing: 0.6px;
 }
-.nav-link::after { /* Underline effect for active/hover */
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -8px; /* Further down */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--secondary-color); /* Accent color for underline */
-    transition: width 0.3s ease;
+.nav-link::after { 
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: -6px; 
+    left: 50%; transform: translateX(-50%);
+    background-color: var(--secondary-color); 
+    transition: width 0.25s ease-in-out;
 }
 .nav-link:hover,
 .nav-link.active-link {
-    color: var(--light-text-color); /* Full white on hover/active */
+    color: var(--light-text-color); 
 }
 .nav-link:hover::after,
 .nav-link.active-link::after {
-    width: 100%;
+    width: 80%; 
 }
-.nav-link i.fa-caret-down { margin-left: 0.4rem; font-size: 0.8em; }
+.nav-link i.fa-caret-down { margin-left: 0.3rem; font-size: 0.75em; }
 
-.dropdown-menu { /* Dropdown styling */
-    display: none;
-    position: absolute;
-    top: calc(100% + 10px); /* Ensure it's below underline */
-    left: 0;
-    background-color: var(--bg-color); /* Dropdown bg is light */
-    min-width: 230px;
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    z-index: 1001;
-    padding: 0.5rem 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    border-top: 3px solid var(--secondary-color); /* Accent border on top */
+.dropdown-menu { 
+    display: none; position: absolute; top: calc(100% + 5px); 
+    left: 0; background-color: #ffffff; 
+    min-width: 220px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); 
+    border-radius: 0 0 var(--border-radius) var(--border-radius); 
+    z-index: 1001; padding: 0.6rem 0; opacity: 0; visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+    border-top: 2px solid var(--secondary-color); 
 }
-/* ... (rest of dropdown styles from previous complete CSS are mostly fine) ... */
-/* Make sure dropdown-item text color is var(--text-color) for light background */
 .dropdown-item {
-    display: block; padding: 0.8rem 1.5rem; color: var(--text-color); /* Dark text */
-    font-size: 0.9rem; white-space: nowrap; font-family: var(--body-font);
+    display: block; padding: 0.7rem 1.4rem; color: var(--text-color); 
+    font-size: 0.85rem; white-space: nowrap; font-family: var(--body-font);
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
-.dropdown-item:hover { background-color: #f0f0f0; color: var(--primary-color); }
+.dropdown-item:hover { background-color: var(--bg-section-light-1); color: var(--primary-color); }
 
 
-.hamburger { /* Hamburger styling */
+.hamburger { 
     display: none; cursor: pointer; background: none; border: none;
     padding: 10px; margin-left: 1rem; flex-shrink: 0; z-index: 1005;
 }
 .bar {
-    display: block; width: 28px; height: 3px; margin: 6px auto;
-    background-color: var(--light-text-color); /* Hamburger bars are light */
-    transition: all 0.3s ease-in-out; border-radius: 2px;
+    display: block; width: 25px; height: 2px; margin: 5px auto; 
+    background-color: var(--light-text-color); 
+    transition: all 0.25s ease-in-out; border-radius: 2px;
 }
 
 .header-flag-corner {
-    height: 45px; /* Adjusted size */
-    width: auto;
-    margin-left: 1rem;
-    flex-shrink: 0;
+    height: 40px; 
+    width: auto; margin-left: 1rem; flex-shrink: 0;
 }
 
-/* --- Main Content Sections - NEW Backgrounds & Text Colors --- */
+/* --- Main Content Sections --- */
 main > .page-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 0; /* Increased padding */
-    overflow-y: auto;
-    position: relative;
+    height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 70px 0; 
+    overflow-y: auto; position: relative;
 }
 .page-section > .container { position: relative; z-index: 2; }
 
-.page-section h2 { /* Section titles styling */
-    text-align: center;
-    margin-bottom: 50px; 
-    position: relative;
-    padding-bottom: 20px;
-    font-weight: 700; /* Ensure headings are bold */
+.page-section h2 { 
+    text-align: center; margin-bottom: 40px; 
+    position: relative; padding-bottom: 15px; 
+    font-weight: 600; 
 }
-.page-section h2::after { /* Underline for section titles */
+.page-section h2::after { 
     content: ''; position: absolute; display: block;
-    width: 70px; height: 4px; background: var(--secondary-color);
+    width: 60px; height: 3px; background: var(--secondary-color);
     bottom: 0; left: 50%; transform: translateX(-50%);
     border-radius: 2px;
 }
 
-/* Generic Overlay (used for #home and #about) */
 .section-overlay {
     display: none; position: absolute; top: 0; left: 0;
     width: 100%; height: 100%; z-index: 1;
@@ -299,181 +271,149 @@ main > .page-section {
 /* Hero Section (#home) */
 #home.hero-section {
     background: url('docs/main.jpg') no-repeat center center/cover;
-    color: var(--light-text-color); /* Text on hero is light */
+    color: var(--light-text-color); 
 }
 #home.hero-section .section-overlay {
     display: block;
-    background-color: rgba(0, 40, 80, 0.65); /* Adjusted overlay (darker primary hint) */
+    background-color: rgba(25, 58, 99, 0.6); /* Overlay from primary color */
 }
-#home.hero-section h1 { color: var(--light-text-color); text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
-#home.hero-section p { color: rgba(255,255,255,0.9); }
+#home.hero-section h1 { color: var(--light-text-color); text-shadow: 1px 1px 2px rgba(0,0,0,0.25); }
+#home.hero-section p { color: rgba(240,240,240,0.9); }
 
-/* About Section (#about) */
+/* About Section (#about) - CRITICAL FIXES */
 #about.page-section {
-    background: url('docs/school.jpg') no-repeat center center/cover;
-    color: var(--light-text-color);
+    background: url('docs/school.jpg') no-repeat center center/cover !important; /* Added !important as a temporary measure if other styles conflict */
+    color: var(--light-text-color) !important; /* Ensure text is light */
 }
 #about.page-section .section-overlay {
-    display: block;
-    background-color: rgba(20, 30, 40, 0.7); /* Dark slate overlay */
+    display: block !important; /* Ensure overlay is shown */
+    background-color: rgba(30, 40, 50, 0.75) !important; /* Darker overlay for better text contrast */
 }
-#about.page-section h2 { color: var(--light-text-color); }
-#about.page-section h2 .icon-title { color: var(--secondary-color); } /* Keep icon accent */
-#about.page-section p { color: rgba(255,255,255,0.9); }
-#about.page-section .column-image img { border: 3px solid rgba(255,255,255,0.5); }
+#about.page-section h2 { color: var(--light-text-color) !important; }
+#about.page-section h2 .icon-title { color: var(--secondary-color) !important; } 
+#about.page-section p { color: rgba(240,240,240,0.95) !important; } /* Brighter paragraph text */
+#about.page-section .column-image img { border: 2px solid rgba(255,255,255,0.3); }
+/* Ensure .container content is above overlay */
+#about.page-section .container {
+    position: relative;
+    z-index: 2;
+}
+
 
 /* Highlights Section (#highlights) */
-#highlights.page-section {
-    background-color: var(--bg-section-light-1); /* New light bg */
-}
-/* Default text/heading colors are fine here (dark on light bg) */
+#highlights.page-section { background-color: var(--bg-section-light-1); }
 #highlights.page-section .highlight-card {
-    background-color: var(--light-text-color); /* Cards are white on this bg */
+    background-color: #ffffff; 
     border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
 /* Programs Section (#programs) */
-#programs.page-section {
-    background-color: var(--bg-color); /* Can use main white if contrast is needed */
-    /* Or try a different light shade: var(--bg-section-light-2); */
-}
-/* Default text colors are fine */
+#programs.page-section { background-color: var(--bg-section-light-2); }
 
 /* Admission Section (#admission) */
-#admission.page-section {
-    background-color: var(--bg-section-accent-light); /* Light yellow accent bg */
-}
-/* Default text colors fine */
+#admission.page-section { background-color: var(--bg-section-accent-light); }
 
 /* News Section (#news) */
-#news.page-section {
-    background-color: var(--bg-section-light-2);
-}
-/* Default text colors fine */
-#news.page-section .news-item { background-color: var(--light-text-color); }
+#news.page-section { background-color: var(--bg-section-light-1); }
+#news.page-section .news-item { background-color: #ffffff; border: 1px solid var(--border-color); }
 
 /* Staff Section (#staff) */
 #staff.page-section {
-    background-color: var(--bg-section-dark-1); /* Dark background */
+    background-color: var(--bg-section-dark-1); 
     color: var(--light-text-color);
 }
 #staff.page-section h2 { color: var(--light-text-color); }
-#staff.page-section p { color: rgba(255,255,255,0.85); }
+#staff.page-section p { color: rgba(240,240,240,0.85); }
 
 /* Gallery Section (#gallery) */
-#gallery.page-section {
-    background-color: var(--bg-color); /* White, or var(--bg-section-light-1) */
+#gallery.page-section { 
+    background-color: var(--bg-gallery); 
+    color: var(--text-color); /* Ensure text is dark on light gallery bg */
 }
-/* Default text colors fine */
+#gallery.page-section h2 { color: var(--primary-color); } /* Primary color for heading */
+#gallery.page-section p { color: var(--text-color); }    /* Dark text for paragraph */
+
+#gallery.page-section .gallery-image { 
+    border-radius: var(--border-radius); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ccc; /* Placeholder for broken image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 0.9em;
+    aspect-ratio: 3/2; /* Maintain aspect ratio if image fails */
+}
+#gallery.page-section .gallery-image:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
 
 /* Contact Section (#contact) */
-#contact.page-section {
-    background-color: var(--bg-section-light-1);
-}
-/* Default text colors fine */
-#contact.page-section .map-container { box-shadow: none; border: 1px solid var(--border-color); }
+#contact.page-section { background-color: var(--bg-section-light-2); }
+#contact.page-section .map-container { box-shadow: none; border: 1px solid var(--border-color); border-radius: var(--border-radius); }
 
-/* --- Footer --- (Using refined styles from previous answer, colors adapted) */
+/* --- Footer --- */
 footer {
-    background-color: var(--primary-color-darker); /* Darker primary for footer */
-    color: rgba(255,255,255,0.8);
-    padding: 50px 0 20px 0;
+    background-color: var(--primary-color-darker); 
+    color: rgba(230,230,230,0.8); 
+    padding: 45px 0 25px 0;
 }
-.footer-container {
-    display: flex; flex-wrap: wrap; justify-content: space-between;
-    gap: 30px; margin-bottom: 40px;
-}
-.footer-column { flex: 1 1 260px; padding: 0 15px; }
-.footer-column h4 {
-    color: var(--secondary-color); margin-bottom: 20px; font-size: 1.2rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; font-weight: 600;
-}
-.footer-column p { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.75); margin-bottom: 0.8rem;}
+.footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 25px; margin-bottom: 35px; }
+.footer-column { flex: 1 1 250px; padding: 0 12px; }
+.footer-column h4 { color: var(--secondary-color); margin-bottom: 18px; font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; font-weight: 500;}
+.footer-column p { font-size: 0.9rem; line-height: 1.6; color: rgba(230,230,230,0.75); margin-bottom: 0.7rem;}
 .quick-links ul { list-style: none; padding: 0; margin: 0; }
-.quick-links li a {
-    display: block; padding: 7px 0; color: rgba(255,255,255,0.75); font-size: 0.95rem;
-    transition: color 0.3s ease, padding-left 0.3s ease;
-}
-.quick-links li a:hover { color: var(--light-text-color); padding-left: 8px; text-decoration: none; }
-.social-media .social-icon {
-    display: inline-flex; align-items: center; color: rgba(255,255,255,0.75);
-    font-size: 1rem; margin-bottom: 12px; text-decoration: none; transition: color 0.3s ease;
-}
-.social-media .social-icon i {
-    font-size: 1.5rem; margin-right: 12px; color: var(--secondary-color);
-    transition: transform 0.3s ease; width: 30px; text-align: center;
-}
+.quick-links li a { display: block; padding: 5px 0; color: rgba(230,230,230,0.75); font-size: 0.9rem; transition: color 0.2s ease, padding-left 0.2s ease;}
+.quick-links li a:hover { color: var(--light-text-color); padding-left: 7px; text-decoration: none; }
+.social-media .social-icon { display: inline-flex; align-items: center; color: rgba(230,230,230,0.75); font-size: 0.9rem; margin-bottom: 10px; text-decoration: none; transition: color 0.2s ease;}
+.social-media .social-icon i { font-size: 1.3rem; margin-right: 10px; color: var(--secondary-color); transition: transform 0.2s ease; width: 22px; text-align: center;}
 .social-media .social-icon:hover { color: var(--light-text-color); }
-.social-media .social-icon:hover i { transform: scale(1.1); }
-.footer-bottom {
-    text-align: center; padding-top: 25px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-}
-.footer-bottom p { margin-bottom: 0.6rem; font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+.social-media .social-icon:hover i { transform: scale(1.12); }
+.footer-bottom { text-align: center; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.07);}
+.footer-bottom p { margin-bottom: 0.5rem; font-size: 0.8rem; color: rgba(230,230,230,0.6);}
 .footer-bottom a { color: var(--secondary-color); font-weight: 500; }
 .footer-bottom a:hover { color: var(--light-text-color); text-decoration: underline; }
 
-/* --- Responsive Design (Media Queries) --- */
-/* The responsive part from the previous full CSS is largely okay, */
-/* but ensure text color contrasts are maintained with new section backgrounds */
-/* Example adjustment for mobile footer: */
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .container { width: 95%; }
+    h1 { font-size: 2.2rem; } h2 { font-size: 1.7rem; }
+    main > .page-section { padding: 60px 0; }
+    .nav-logo { font-size: 1.3rem; }
+    .header-logo-corner { height: 45px; width: 45px; padding: 3px; }
+    .nav-item { margin-left: 1.2rem; } .nav-link { font-size: 0.85rem; }
+    .header-flag-corner { height: 35px; }
+}
+
 @media (max-width: 768px) {
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.8rem; }
-    main > .page-section { padding: 60px 0; } /* Adjust padding for mobile */
-
-    .nav-logo { font-size: 1.4rem; }
-    .header-logo-corner { margin-right: auto; } /* Ensure it pushes nav menu correctly */
-    .nav-menu { /* Mobile nav dropdown background */
-        background-color: var(--primary-color-darker); /* Darker for dropdown */
-    }
-    .nav-link { /* Mobile nav links */
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .nav-link:hover, .nav-link.active-link {
-        background-color: rgba(255,255,255,0.05); /* Subtle hover for mobile nav items */
-    }
-    .dropdown-menu { /* Mobile dropdown's sub-menu */
-        background-color: var(--bg-color); /* Light background */
-        border-top-color: var(--primary-color); /* Match main nav color */
-    }
-
-
+    main > .page-section { padding: 50px 0; }
+    .nav-logo { font-size: 1.25rem; }
+    .header-logo-corner { margin-right: auto; }
+    .nav-menu { background-color: var(--primary-color-darker); }
+    .nav-link { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav-link:hover, .nav-link.active-link { background-color: rgba(255,255,255,0.03); }
+    .dropdown-menu { background-color: #fdfdfd; border-top-color: var(--primary-color); }
     .footer-container { flex-direction: column; text-align: center; }
-    .footer-column { flex-basis: auto; margin-bottom: 35px; padding: 0; }
+    .footer-column { flex-basis: auto; margin-bottom: 30px; padding: 0; }
     .quick-links ul { display: inline-block; text-align: left; }
     .social-media .social-icon { justify-content: center; width: 100%; }
-
-    /* Example for a dark section on mobile */
-    #staff.page-section { color: var(--light-text-color); }
-    #staff.page-section h2 { color: var(--light-text-color); }
-
-    /* Example for a text block on image bg on mobile */
-    #about.page-section .column-text { 
-        padding: 15px; 
-        background-color: rgba(0,0,0,0.5); /* Darker overlay for text block */
-        border-radius: var(--border-radius);
-    }
+    #about.page-section .column-text { padding: 12px; background-color: rgba(0,0,0,0.55); border-radius: var(--border-radius);}
 }
 
 @media (max-width: 480px) {
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.6rem; }
-    main > .page-section { padding: 50px 0; }
-    .btn { padding: 0.8rem 1.6rem; font-size: 0.85rem; }
-    .nav-logo { font-size: 1.2rem; }
+    html { font-size: 15px; }
+    h1 { font-size: 1.9rem; } h2 { font-size: 1.5rem; }
+    main > .page-section { padding: 40px 0; }
+    .btn { padding: 0.7rem 1.5rem; font-size: 0.8rem; }
+    .nav-logo { font-size: 1.1rem; }
 }
 
-/* Accessibility: Focus visible for keyboard navigation */
-:focus-visible {
-  outline: 3px solid var(--secondary-color);
-  outline-offset: 3px; /* Increased offset */
-  border-radius: 3px;
-}
-.nav-link:focus-visible, .dropdown-item:focus-visible, .btn:focus-visible {
-    box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--secondary-color); /* More prominent focus */
-}
-.hamburger:focus-visible {
-    outline: 2px solid var(--light-text-color); /* Light outline on dark bg */
-    outline-offset: 2px;
-}
+/* Accessibility */
+:focus-visible { outline: 2px solid var(--secondary-color); outline-offset: 2px; border-radius: 2px;}
+.nav-link:focus-visible, .dropdown-item:focus-visible, .btn:focus-visible { box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 3px var(--secondary-color); }
+.hamburger:focus-visible { outline: 2px solid var(--light-text-color); outline-offset: 2px;}
